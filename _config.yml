@@ -1,6 +1,6 @@
-title:              Davidmsf portfolio
+title:              David Fabricius portfolio
 email:              davidmsf@gmail.com
-description:        En portfolio fra en datamatiker på 4. semester
+description:        En portefølje fra en datamatiker på 4. semester
 author:             David
 baseurl:            ""
 url:                "https://davidmsf.github.io"
@@ -17,7 +17,7 @@ google_analytics:   UA-XXXXXXXXX-X # out your google-analytics code
 
 # Build settings
 markdown:           kramdown
-paginate:           5
+paginate:           7
 paginate_path:      "/posts/page:num/"
 plugins:
   - jekyll-feed
