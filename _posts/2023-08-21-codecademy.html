@@ -1,0 +1,29 @@
+---
+layout: post
+title: "Codecademy’s “Build a Machine Learning Model with Python”"
+subtitle: "Hvad jeg har lært fra denne tutorial"
+date: 2023-08-28 10:45:13 -0400
+background: '/img/posts/Schreenshot.png'
+---
+
+<p>Jeg har gennemgået 2/3 dele af Codecademy’s “Build a Machine Learning Model with Python”. Man lærer hvordan det er at arbejde med store mængder data, og forberede det til at blive trænet på en model. Udover dette introducerede den, en del længere, tutorial mange begreber, koncepter og algoritmer man bruger i machine learning, men gik heller ikke alt for meget i dybden med de mere komplekse koncepter. Tutorialen “Build a Machine Learning Model with Python” var netop kun en en introduktion for nybegyndere. Jeg havde håbet at lære mere om neurale netværk. </p>
+<h3>Regression vs. Klassifikation</h3>
+<p>Tutorialen forklarer forskellen mellem regression og klassifikation. Regression bliver brugt til at forudse kontinuerlige outputs, mens klassifikation bliver brugt til diskrete (discrete) outputs/label, som tilhører en bestemt kategori som output.  Kontinuerlige eksempel: Forudse højden af en plante i forhold til mængde regn. Klassifikation eksempel: forudse om en mail er spam eller ej. Dette eksempel er en “binary classification”, der findes også multi-class(samme som binary, bare med flere end to) og multi-label(hvor der er muligt at have flere rigtige labels som output) klassifikation. </p>
+<h3>Typer af Modeller: Supervised & Unsupervised Learning</h3>
+<p>Der er også to forskellige typer af modeller: Supervised Learning & Unsupervised Learning. Ved Supervised Learning er dataen “labeled” og programmet lærer at forudse outputtet ud fra labeled input data. Ved unsupervised learning er data’en “unlabled” og programmet lærer fra mønsteret og strukturen i data’en. De inputs man træner ens model på er kaldt “features”, og det input man gerne vil have modellen til at forudse er kaldt en “label”.</p>
+<h3>Liniær Regression</h3>
+<p>Tutorialen begynder med en af de lidt nemmere emner: liniær regression.  Ved lineær regression finder algoritmen den bedste rette linje til data punkterne, fx huspriser ud fra husets størrelse. Der blev vist hvordan man selv skriver algoritmen og derefter hvordan man bruger scikit-learns linear regression model. Man kan finde den bedste rette linje ved at justere hældning “slope” og “intercept” en konstant, der afgør, hvor grafen skærer y-aksen, som man måske kan huske fra matematik er den liniære funktion y = m*x+b, hvor x er input. Man kan også tænke på det som at hældning er en vægt og intercept er bias, hvilket bliver brugt i neurale netværk. Så man ganger input med vægten og plusser bias. Der blev derefter vist hvordan man laver “multiple linear regression” hvor der er flere end en slope/vægte og input. Generelt for mange af disse machine learning algoritmer handler det om at justere vægtene ud fra “loss”, altså hvor langt fra det man forudser, gættet, er fra det faktiske label, dvs. det man gerne vil forudse. </p>
+<h3>Logistisk Regression</h3>
+<p>Jeg lærte også om logistisk regression, logistisk regression bruger binary klassifikation(0/1 eller True/False). Man bruger en sigmoid kurve, når x = 0 er y = 0.5. Når x er stor er y meget tæt på 1, og når x er lille er y meget tæt på 0.  Der er et “threshold“ der afgør resultatet, om det er 0 eller 1, for eksempel om der er et læk eller ej, dette kunne fx være 0.5. Man bruger faktisk liniær regression til at “fodre” sigmoid funktionen for at få en sandsynlighed. Som man måske kan huske fra statistik, er en sandsynlighed altid mellem 0 og 1. For at finde ud af hvor godt modellen gør det, beregner man “log-loss”. Denne funktion måler forskellen mellem vores forudsigelser (output fra sigmoid funktionen) og de faktiske værdier (sandheder). Hvis den forudsagte sandsynlighed er tæt på den sande værdi, giver det et lavt tab, og omvendt med et højt tab. Log-loss:
+    <p>L(y,p)=−ylog(p)−(1−y)log(1−p)</p>
+    y er den faktiske værdi (0 eller 1), og p er den forudsagte sandsynlighed for at den faktiske klasse er 1. Hvis denne sandsynlighed er tæt på den sande, giver det et lavt tab. 
+    Når y(den faktiske værdi) er 1(y = 1), bliver formlen: L = -log(p), hvis p er tæt på 1(forudsigelsen er korrekt) kommer tabet til at være meget småt. Hvis p er tæt på 0 (forudsigelsen er forket) bliver tabet et stort nummer. 
+    Omvendt hvis den sande værdi er 0 bliver formlen: -log(1-p) hvis p er tæt på 0(forudsigelsen er korrekt) kommer tabet til at være meget småt. Hvis p er tæt på 1 (forudsigelsen er forket) bliver tabet et stort nummer. 
+    
+    Dog var denne information ikke noget codecademy valgte at gå over, så det er noget jeg selv har fundet på nettet.</p>
+<h3>Perceptroner</h3>
+<p>Der blev også introduceret konceptet om en “perceptron”. En perceptron er et grudlæggende element i et neuralt netværk, og kan sammenlignes med et neuron i hjernen. Den tager inputs, ganger dem med vægte, og summer disse vægtede inputs op (weighted sum). Hvis de summerede vægtede inputs går over en bestemt grænse producerer perceptronen et specifikt output. Dette output er resultatet af en "activation function". En activation function bestemmer, hvilken output en perceptron skal give baseret på de indkommende inputs, hvilket gør det muligt for netværket at lære komplekse mønstre. 
+
+    Derudover lærte jeg fra tutorialen og om: naive bayes classifier og Bayes’ theorem, normalisering, k-nearest neighbour og decision trees.
+    
+    Da jeg gerne vil arbejde med enten logistisk regression eller et neuralt netværk i ML-valgfaget, og Codecademy’s tutorial ikke gik i dybden med neurale netværk, valgte jeg at begynde med at studere neurale netværk specifikt.  Jeg begyndte på en youtube tutorial “Neural Networks from Scratch”.</p>
