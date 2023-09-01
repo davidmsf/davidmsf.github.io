@@ -9,15 +9,13 @@ body {
 
 .row a{
     color:rgb(255, 255, 255);
+    text-decoration: none;
 }
 .row a:hover{
     color:rgb(163, 163, 163);
+    text-decoration: none
 }
 
-.post-subtitle:hover a,
-.post-subtitle:hover i {
-    color: rgb(163, 163, 163);
-}
 
 
 
