@@ -1,0 +1,26 @@
+---
+layout: post
+title: "kravspecifikation"
+subtitle: "Læringsplan og mål: Krav til systemet som single page application (SPA)"
+date: 2023-09-05 4:45:13 -0400
+background: '/img/posts/kanban.png'
+---
+
+<p>Logge ind: Hver bruger skal kunne logge ind med brugernavn og password.</p>
+<p>Oprette bruger: Systemet skal gøre det muligt at kunne oprette en bruger.</p>
+<p>Oprette testobjekter: Man skal kunne oprette et testobjekt med billede og lækagepunkter (“sniffing points”).</p>
+<p>Visning af testobjekt: Brugeren skal være i stand til at vælge et specifikt testobjekt. Applikationen skal vise et billede af det valgte testobjektet, fx et rørsystem, hvor lækagepunkter bliver fremvist.</p>
+<p>Redigering af testobjekt: Brugeren kan redigere, for hvert lækagepunkt, om den er ok/ikke ok, og give en begrundelse i et tekstfelt. Det skal kun være muligt, at redigere lækagepunktet, hvis der er givet en begrundelse. Ændringerne samt tidspunktet for ændringerne, og hvilken bruger der har foretaget ændringerne, skal gemmes i en database.</p>
+<p>ML: Brugeren kan indtaste information, om et testobjekt med lækagepunkter, og derefter få at vide sandsynligheden for lækage ved hvert lækagepunkt(kan godt være at dette bliver ændret).</p>
+<p>Lagre data: Ved alle de steder, hvor der skal gemmes data, bliver der lavet requests til API'en Olav(gruppemedlem) laver, som så går ud til en database.</p>
+<p>Use case diagram:</p>
+<img src="/img/posts/Usecasediagram.png" style="max-width: 100%"> 
+
+<p>Her er et forslag til, hvordan applikationen kan se ud, ved desktop:</p>
+<img src="/img/posts/desktopnolekpage.png" style="max-width: 100%">
+<p>Man kan klikke på test objects, hvilket åbner et vindue hvor man kan vælge et specifikt testobjekt:</p>
+<img src="/img/posts/desktopnolekpageselectobject.png" style="max-width: 100%">
+
+<p>Forslag til layout til mobil:</p>
+<img src="/img/posts/nolekmobilesite.png" style="max-width: 100%">
+<img src="/img/posts/nolekmobilesitechoosetestobject.png" style="max-width: 100%">
