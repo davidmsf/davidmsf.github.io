@@ -13,6 +13,7 @@ background: '/img/posts/Screenshot.png'
 <img src="/img/posts/dotproduct.png" style="max-width: 100%">
 <p>Prik produktet fåes ved at gange elementer fra hvert index og lægge dem sammen. Når man ganger to matrices sammen så ganger man hver række med hver kolonne, så man får et nyt matrix med prik produktet. For at man kan gange inputs og weights sammen for hvert element, skal der være lige mange i rækker og kolonnerne. Man kan skife rækker og kolonner på et matrix for at få det til at passe, dette kaldes for at transpose (np.dot(inputs, np.array(weights).T)). Input data’en bliver gemt i en “batch”, hvilket også er et 2d array/matrix, man bruger et batch af inputs af gangen istedet for kun en række af inputs af gangen fordi det er mere effektivt. Vægtene er i starten random mellem -1 og 1.</p>
 <img src="/img/posts/matrixdot1.png" style="max-width: 100%">
+<br>
 <img src="/img/posts/matrixdot3.png" style="max-width: 100%"> 
 <p>Aktiverings funktioner: Hvert neuron har en aktiverings funktion, efter inputs er ganget med vægte og plusset med bias, passerer den en aktiverings funktion, som der afgør outputtet, “hidden layers” og det sidste output lag har ofte forskellige aktiverings funktioner. Det findes flere forskellige aktiverings funktioner: step-, relu-, softmax- og sigmoid- funktioner(har gennemgået sigmoid ved en anden post). Step er blot hvor outputtet enten er 0 eller 1 afhængigt af værdien, hvis værdien passerer 0 bliver den 1.</p> 
 <img src="/img/posts/stepfunction.png" style="max-width: 100%"> 
