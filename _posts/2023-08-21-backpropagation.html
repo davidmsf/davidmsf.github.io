@@ -1,0 +1,32 @@
+---
+layout: post
+title: "Backpropagation"
+subtitle: "ML: Backpropagation grundlæggende"
+date: 2023-09-20 4:45:13 -0400
+background: '/img/posts/Screenshot.png'
+---
+
+
+<p>Backpropagation er et fundamentielt koncept ved træning af neurale netværk.  Det er en proces, hvor netværket identificerer, hvilke vægte og biases bidrager mest til fejlen i dens forudsigelser.  Målet ved backpropagation er at udregne gradienten af “loss”, altså hvor forkert forudsigelsen var, med respekt til vægte og bias. Gradienten kan tænkes på som en tangent, den fortæller os hvordan vægtene, og bias, skal justeres for at reducrere denne fejl ved forudsigelsen. Man bruger ‘kæde reglen’ (chain rule) til at finde denne gradient, som hjælper med at finde uf af hvordan en lille forandring i vægten har indflydelse på det overordnede tab (loss). </p>
+<img src="/img/posts/chainrule.png" style="max-width: 100%"> 
+<p>Man starter ved “output” laget, det sidste lag, og bevæger sig tilbage til starten, input laget, lag for lag. For hvert lag udregner man med kæde reglen hvordan lagets output har indflydelse på tabet, og derefter udregner man hvordan lagets input har indirekte inflydelse på tabet gennem output i laget. Man ganger disse to værdier sammen, derved får man hvor meget inputtet har indflydelse på tabet, og dette kaldes en gradient. Når man har udregnet gradienten, kanman justere vægtene og bias en lille smule. Denne process bliver gentaget mange gange, hvor vægtene og bias bliver finjusteret, så netværkets forudsigelser bliver mere akkurate. Dette kaldes gradient descent. Hvor hurtigt vægtene skal justeres kaldes for “learning rate”, man kan også tænke på det ved at forestille sig at man står på en bakke, hvor der er en dal, og går et skridt ned mod dalen. Learning rate er hvor stort det skridt man tager er.</p> 
+
+<p>Ved et forward pass i en enkelt neuron kan udregningerne forståes som en stor funktion bestående af andre mindre funktioner. Funktionen tager input værdier, vægte og bias. Denne store funktion består af en funktion til at gange inputs og vægte, den består også af en funktion til at summere disse værdier (vægte og inputs ganget sammen) og bias, og så også en max funktion som ReLU aktivations funktionen (hvis værdien er over 0 så giver funktionen den værdi, hvis den er under 0 så en den  lig med 0). Dette er tre funktioner “kædet” sammen. Man bruger kæde reglen til at finde gradienterne ved at udregne differentialkvotienten og de partielle differentialkvotienter med respekt til hver af vores vægte, bias og inputs. </p>
+<img src="/img/posts/sammensatfunktionneuron.png" style="max-width: 100%"> 
+<img src="/img/posts/sammensatfunktionneuron1.png" style="max-width: 100%"> 
+<p>Kæde reglen siger at man finder differentialkvotienten af en sammensat funktion ved at differentiere den ydre funktion ganget med den indre funktion differentieret. For at udregne hvilken indflydelse en vægt har på outputtet, skal man ifølge kæde reglen udregne differentialkvotienten af aktivations funktionen med respekt til dens indre funktion, hvilket er summerings funktionen. Dette ganger man med summerings funktionen differentieret, med respekt til dens indre funktion, hvor vægen hvis indflydelse man vil finde ud af befinder sig. Dette ganger man så med funktionen, hvor inputs og vægte bliver ganget, differentieret med respekt til den førnævte vægt. Dette tal kan man så bruge til at opdatere vægten, så forudsigelsen bliver mere akkurat, dette tal kalder man gradienten, og fortæller i hvilken retning tabet bliver lavest. Dette gør man ved alle parametre i neuronet, altså inputs, vægte og bias. Differentialkvotienten af inputs bliver så brugt til at kæde de andre tidligere lag sammen, dvs. til at udregne parametrene i det tidligere lag. </p> 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/_9qHQA30hys?si=YFkvuhlbhIBCKnnk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+<img src="/img/posts/chainruleexampleneuronderivative.png" style="max-width: 100%"> 
+<p>I dette eksempel modtager en neuron en indledende gradient på 1 fra det næste lag til demonstrationsformål. Farven rød bruges til at repræsentere differentialkvotienter.
+
+    Inputværdien til ReLU-funktionen er 6, så dens afledte er 1. Ved hjælp af kædereglen ganges denne afledte funktion med den afledte modtaget fra det næste lag. Funktionen før aktiveringsfunktionen i det neurale netværk er summerings-funktionen af vægtede input og bias. Den afledte summerings-funktionen er altid 1, uanset input, derfor kan man altid undvære dette trin.
+    Når vi fortsætter bagud, er funktionen, der kommer før summen, gange af vægte og input. Den afledte for to tal der ganges er det tal som der bliver ganget med det vi differentiere med hensyn til. Når vi anvender kædereglen på denne måde - ved at arbejde baglæns ved at tage aktiverings funktionens differentialkvotient, tage sumoperations afledte, gange begge osv., bliver processen kaldet for backpropagation ved hjælp af kædereglen.</p> 
+
+<p>Forkortet er udregningen at aflede aktiveringsfunktionen(bliver 0 eller 1), og gange med vægten, hvis der bliver afledt med respekt til det relatede input, og omvendt at gange med inputtet, i forhold til den relaterede vægt. Den partielle afledte af neuronens funktion i forhold til bias er altid 1. Samlet set danner de afledte en vektor, der udgør vores gradienter. Ved at anvende disse gradienter på vægtene kan vi minimere outputtet. </p> 
+
+
+
+<p>Når vi udvider fra et enkelt neuron til et helt lag af neuroner, vil hvert neuron i et lag forbinde til alle neuroner i det næste lag. Under backpropagation vil hvert neuron fra det nuværende lag modtage en gradient fra det efterfølgende lag. Vægtene fra hver neuron i det tidligere lag bliver ganget med gradienten. dette danner grundlag for den næste gradient til det næste lag.  Og så udføres udregningen rekursivt.  </p>
+<p>Her beregner drelu2 hvordan outputtet fra det laget påvirker tabet.  Dinputs2, dweights2 og dbiases beregner, hvordan input, vægte og biases fra det andet tætte lag påvirker tabet.</p>
+<img src="/img/posts/backpasscode.png" style="max-width: 100%"> 
+<p>Dernæst udføres backpropagation gennem den første aktiveringsfunktion. På samme måde beregner drelu1 hvordan outputtet fra det første lag påvirker tabet. Dinputs1, dweights1 og dbiases1 beregner, hvordan input, vægte og biases fra det første tætte lag henholdsvis påvirker tabet.</p>
