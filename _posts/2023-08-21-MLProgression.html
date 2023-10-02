@@ -1,0 +1,45 @@
+---
+layout: post
+title: "ML Progression"
+subtitle: "Udviklingen af ML valgfaget"
+date: 2023-10-2 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  Jeg har nu prøvet at træne nogle modeller på data jeg har genereret. Jeg har
+  herefter fundet ud af hvordan man i Python gemmer den model, man har trænet,
+  og derefter indlæser den. Dette bliver gjort med et bibliotek, der hedder
+  Pickle. Jeg har besluttet mig for at udvide de data, jeg har genereret, så nu
+  indeholder hvert sample disse features: temp (mellem 15-30), tryk (mellem 2 og
+  8), alder i år (mellem 0 og 10) og hvilket materiale testobjektet er lavet af
+  (plast, kobber og sølv). Dette er i hver række i de data, der er blevet
+  genereret. Jeg har haft svært ved at finde noget rigtigt data at arbejde med,
+  så indtil videre er modellen kun trænet på det, jeg har genereret. Det ville
+  være godt, hvis jeg kunne få fat i noget data fra enten virksomheden vi
+  samarbejder med/product owner eller, hvis jeg kan finde noget andet på nettet.
+</p>
+<p>
+  Jeg har snakket med et andet gruppemedlem om, at vi skal lægge modellen op på
+  en server, hvor den bliver containerized med Docker, og hvor man kan tilgå den
+  med en API. Vi har tænkt os at bruge Python-frameworket kaldt “Flask”. Jeg har
+  lidt erfaring med Flask, hvor jeg har lavet en simpel hjemmeside med det, dog
+  har jeg aldrig brugt det som en API. Så hver gang en bruger vil bruge
+  modellen, bliver der sendt en request til API'en som et JSON objekt med de
+  parametre, de vil have en forudsigelse ud fra. Herefter laver modellen en
+  forudsigelse, hvilket bliver kørt i Python, og sender en response tilbage
+  igennem API'en med forudsigelsen. Derudover snakkede vi også om at gemme
+  dataen fra både request og response i en database. Dette er, hvordan jeg
+  forestiller mig, et JSON objekt kan se ud:
+</p>
+<p>
+  { “testobjekt”:{ “temp”: 21, “tryk”: 6, “alder_år”: 4, “plast”: 0, “kobber”:1,
+  “sølv”:0 } }
+</p>
+<p>
+  Jeg er i øjeblikket begyndt at lære om optimizers inden for machine learning.
+  Fremadrettet håber jeg at blive færdig med at lægge modellen op på serveren,
+  så den kan tilgås med en API, og evt. træne den på noget “ægte” data.
+  Derudover kunne jeg godt tænke mig at prøve at løse et mere kompliceret
+  problem med machine learning i fremtiden.
+</p>
