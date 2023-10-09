@@ -1,0 +1,111 @@
+---
+layout: post
+title: "ML Progression (uge 41)"
+subtitle: "Udviklingen af ML valgfaget"
+date: 2023-10-9 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  Jeg har prøvet at inkorporere tekst i det data jeg fodre til det neurale
+  netværk. Jeg fik chatGPT til at generere tusind sætninger, omkring hvad jeg
+  kunne forestille mig, kunne være begrundelser givet til hvorfor et lækagepunkt
+  har et læk. Disse begrundelser lever måske ikke helt op til hvordan de vil se
+  ud i virkeligheden, men det var et grundlag for mig til at prøve kræfter med
+  at håndtere tekst data, pre-processere det og træne min model med det. Det
+  giver heller ikke store udfordringer til modellem med at forudsige hvor
+  lækagen sker, siden at jeg gjorde det sådan, at det genererede tekst data have
+  en perfekt korreleation med hvor lækagen sker, dvs. at hvis der står at der er
+  en lækage på sniffing point 2, så er det også dataen også labeled sådan. Jeg
+  fik chatGPT til at generere tekst dataen i en csv fil. Første skridt i
+  behandlingen af tekst dataen var at indlæse csv filen og koble det sammen med
+  det pandas dataframe jeg i forevejen arbejdede med som dannede grundlag for
+  det jeg trænede modellen med.
+</p>
+<p>
+  Pandas er et python bibliotek, der giver fleksible datastrukturer designet til
+  at gøre arbejdet med data både let og intuitivt. Man bruger et såkaldt
+  DataFrame, som er en slags 2D tabel (som en SQL tabel eller et Excel ark), med
+  navngivne kolonner og indekserede rækker. Pandas dataframes kan indeholde
+  mange forskellige datatyper og er meget anvendt inden for arbejde med store
+  mængder data.
+</p>
+<p>
+  NumPy er også et meget anvendt python bibliotek som man ikke kan komme uden
+  om. Numpy som står for "Numerical Python", er et af de mest anvendte
+  biblioteker i python. Det er en bibliotek, der tilbyder understøttelse for
+  store, multi-dimensionelle arrays, sammen med en stor samling af matematiske
+  funktioner til at operere på disse arrays.
+</p>
+<p>
+  Scikit-learn er et af de mest populære ML biblioteker til Python. Scikit-learn
+  tilbyder mange algoritmer til supervised og unsupervised learning, samt
+  værktøjer til modelvalg, evaluering, dataforberedelse og modeltuning. Jeg har
+  brugt det til dataforberedelse, herunder TF-IDF.
+</p>
+<p>
+  Jeg præ-processerede tekst dataen ved hjælp af “TF-IDF-vectorization”, en
+  teknik, der transformerer tekstdata til numeriske formater, der er egnede til
+  machine learning modeller. Første skridt ved præ-processering er, at hver
+  række af tekstdataen, dvs. sætninger, bliver lavet til tokens. Processen af
+  tokenization involverer at splitte teksten af til mindre stykker, ofte ord
+  eller underdele af dem, hvilket man kalder tokens. Næste skridt af
+  “TF-IDF-vectorization” er at udregne TF og IDF, hvilket gør at teksten kan
+  representeres som nummerisk data istedet. TF står for term frequency, og for
+  hver række, dsv. sætning i mit tekstdataset, TF udregnes ved at se hvor
+  hyppigt hvert ord i sætningen optræder, og hvor lang sætningen er, i dette
+  tilfælde er det en sætning, men man kan også kalde det mere generelt et
+  dokument. IDF udregner hvor sjældent ordert optræder i alt tekst dataen, mere
+  specifikt forholdet mellem det totale antal sætninger og antallet af
+  sætninger, der indeholder termen. Så jo hyppigere et ord optræder i en bestemt
+  sætning/række jo højere er TF, og jo sjældnere ordet er overordnet jo højere
+  IDF. Man får TF-IDF værdien for hvert ord ved at gange de to værdier, så hvert
+  ord får en “score”. Så TF-IDF vectorization balancerer betydningen af et ord i
+  en sætning (via TF) og sjældenheden af ordet i hele dokumentet (via IDF).
+  Dette gør, at modellen får en form for indsigt i, hvilke ord der er
+  interessante og relevante sammenlignet med en hele samlingen af tekstdataen.
+  Man kan sætte en grænse så der kun er nogle ord med den højeste score der
+  bliver features i det sample man fodre til modellen, i mit tilfælde satte jeg
+  en grænse på 50 ord. Med denne grænse så har man for hvert sample/række en 50
+  kolloner med de mest indflydelsesrige ord. For hver række, hvor der tidligere
+  var tekst, er nu numre der representerer teksten, samlet set en vektor. Så
+  hvis der er en række/sætning der har termet “SP1”, så har den en kollone med
+  et højere end normalt nummer for dette term. Disse nummeriske representanter
+  af teksten kan derved bruges til at træne modellen.
+</p>
+<p>
+  Dette arbejde med tekst, og såvidt også de andre features i mit generede data,
+  som jeg træner min model på er en slags “proof of concept”, altså for at få en
+  forståelse af hvordan man kan klargøre den slags data, som kunne ligne noget
+  fra den virkelige verden, og træne en model med det.
+</p>
+<p>
+  Jeg havde hidtil ikke splittet dataen inden jeg skalerede dataen/normaliserede
+  den, hvilket kan føre til "data leakage", hvilket kan ske, hvis
+  preprocessing-trinene (som f.eks. skalerings- og tekstvectorisering) bliver
+  anvendt på hele datasættet, inden det splittes i trænings- og testdata. For at
+  undgå data leakage, er det afgørende at først opdele data og derefter anvende
+  preprocessing-trinene uafhængigt på trænings- og test-/valideringsdata. Mere
+  præcist skal parametre for datas skalering og tekstvectorisering fastlægges
+  baseret på træningsdataene og derefter anvendes på validerings- og
+  testdataene. Hvis man skalerer det uden at splitte det op først, så får det
+  data, man senere vil validere sin model med, indflydelse på hvordan
+  træningsdataen skalerers, fx indflydelse på mean og standard deviation. I mit
+  tilfælde sker der nok ikke så meget, fordi jeg har genereret dataen, og det er
+  nogenlunde ensformeligt, så det gør ikke så meget, der er for eksempel ikke
+  nogen outliers. Men det er stadig en god praksis at anvende, for at sikre, at
+  modellen evalueres korrekt.
+</p>
+<p>
+  I samme boldgade kan bias såsom og under- og overfitting nævnes. En evaluering
+  af en machine learning model er baseret på dens fejl ved forudsigelser og dens
+  evner til at generalisere nyt ukendt data. Underfitting i machine learning
+  kunne fx være når modellen ikke fanger kompleksiteter og de underliggende
+  mønstre i dataen. Det medfører at den giver dårlige forudsigelser på både
+  træning og validerings/test data. Overfitting refererer til når en model
+  faktisk lærer dataen for godt, inklusiv dens støj og udsvingninger, hvilket
+  fører til at den er dårlig til at generalisere ukendt data. Jeg tænker at min
+  model måske er overfitted, fordi dataen er for ensformelig, så den har en god
+  performance når jeg validerer, men måske er den ikke god til at generalisere
+  ved nyt ikke så ensformligt data.
+</p>

@@ -1,0 +1,78 @@
+---
+layout: post
+title: "Normalizering/scalering"
+subtitle: "Min-max og z-score normalisering"
+date: 2023-10-9 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  I machine learning prøver man at finde mønstre i data ved at sammenligne
+  datapunkter. Men der opstår et problem, hvis dataen fra forskellige features i
+  vores samples har store forskelle i deres skalaer, hvilket kan gøre, at en
+  feature dominerer over de andre og påvirker modellens forudsigelser.
+</p>
+<p>
+  Et eksempel kunne være med lækage test dataen. Temperatur og tryk kan være to
+  egenskaber i datasættet. Uden normalisering er forskellen i temperatur (fx
+  0-30 år) dominerende over forskellen i tryk (fx 1-8). I et andet eksempel,
+  hvor forskellen er endnu tydeligere, kunne være data til huse. Antal værelser
+  og husets alder kan være to egenskaber i et datasættet. Uden normalisering kan
+  forskellen i alder (fx 0-100 år) dominere forskellen i antal værelser (fx
+  1-5). der er en kæmpe forskel mellem et hus med 2 værelser og et hus med 20
+  værelser. Men lige nu, fordi to huse kan være 100 år fra hinanden, bidrager
+  forskellen i antallet af værelser mindre til den samlede forskel.
+</p>
+<img src="/img/posts/normaliseringhus1.png" style="max-width: 100%" />
+<p>
+  Målet med normalisering er at få hvert datapunkt til at have samme skala, så
+  hver egenskab er lige vigtig. Billedet nedenfor viser de samme husdata
+  normaliseret ved brug af min-max normalisering.
+</p>
+<img src="/img/posts/normaliseringhusminmax.png" style="max-width: 100%" />
+<p>
+  Normalisering, også tit kaldt skalering, er teknikken til at justere alle
+  egenskaber i dataen, så de har samme skala, så dataen der bliver input til ml
+  modellen ikke bliver skævvredet og en feature dominerer forudsigelserne. Der
+  findes flere forskellige typer af normaliserings teknikker, for eksempel
+  min-max normalisering og z-score normalisering. Ved min-max normalisering
+  skaleres dataen, så alle værdier ligger mellem 0 og 1, hvor minimumsværdien
+  bliver omdannet til 0, og maksimumsværdien bliver omdannet til 1, og alle
+  andre værdier bliver omdannet til at være mellem 0 og 1.
+</p>
+<img src="/img/posts/minmaxnormaliseringformel.png" style="max-width: 100%" />
+<p>
+  Den er en effektiv normaliseringsteknik, men den er også følsom over for
+  outliers. For eksempel hvis du har 99 værdier mellem 0 og 40 og en værdi er
+  100, så vil de 99 værdier bliver omdannet til at have en værdi mellem 0 og
+  0.4. På den måde bliver dataen stadig “skæv” eller “trykt”, som man kan se på
+  billedet nedenunder:
+</p>
+<img src="/img/posts/minmaxnormaliseringoutlier.png" style="max-width: 100%" />
+<p>
+  Z-score normalisering er en strategi til normalisering af data, der undgår
+  dette problem med outliers. Formlen for Z-score normalisering er nedenfor:
+</p>
+<img src="/img/posts/z-scoreformel.png" style="max-width: 100%" />
+<p>
+  Her er μ gennemsnitsværdien, mean på engelsk, og σ er standardafvigelsen,
+  standard deviation på engelsk. Standard deviation fortæller hvor spredt dataen
+  er omkring gennemsnittet/mean. Hvis en værdi præcis svarer til gennemsnittet
+  af alle værdierne af featuren dvs. at den er det samme som mean μ, så vil den
+  blive normaliseret til 0. Hvis den er under gennemsnittet, vil det være et
+  negativt tal, og hvis den er over, vil det være et positivt tal. Størrelsen af
+  disse værdier er bestemt ud fra standardafvigelsen σ af featuren. Hvis den
+  ikke normaliserede data har en stor afvigelse fra gennemsnittet, så vil de
+  normaliserede værdier være tættere på 0, og omvendt hvis der er en lille
+  afvigelse så vil de normaliserede værdier, z-score, være længere fra 0. Som
+  man kan se på formlen bliver der netop divideret med standard
+  deviation/standardafvigelsen. Normaliseringen justerer datapunkterne, så
+  egenskaberne har en gennemsnitlig værdi på 0 og en standardafvigelse på 1,
+  hvilket gør det lettere at sammenligne dem direkte og undgå, at nogle
+  egenskaber dominerer over andre.
+</p>
+<img src="/img/posts/zscoreoutlier.png" style="max-width: 100%" />
+<p>
+  Som man kan se på billedet håndterer z-score outliers bedre end min-max
+  normalisering
+</p>

@@ -1,0 +1,76 @@
+---
+layout: post
+title: "Optimisering"
+subtitle: "Gradient descent og learning rate"
+date: 2023-10-9 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  De fleste optimizers er varianter af “Stochastic Gradient Descent”. Stochastic
+  Gradient Descent refererer til en optimizer der tager en enkelt “sample” af
+  gangen, frem og tilbage i et neuralt netværk. Et "sample" refererer typisk til
+  en enkelt dataenhed, som modellen trænes på. Et sample har typisk både
+  inputdata, og den korrekte label/output/mål(hvis det er supervised learning).
+  En anden optimizer “Batch Gradient Descent” tager et helt dataset af gangen,
+  ikke kun et batch, hvilket er lidt forvirrende i forhold til navnet. En
+  "batch" til en delmængde af datasættet, der bruges til at træne netværket.
+</p>
+<p>
+  Batch Gradient Descent tager hele træningsdatasættet på en gang, for at
+  beregne gradienten og derved opdatere vægtene. Det betyder, at for hver epoch,
+  beregnes fejlen og gradienten, hvorefter vægtene opdateres, baseret på hele
+  datasættet. En epoch er en komplet gennemgang af hele træningssættet en gang,
+  både forward og backward propagation, og en iteration er er en enkelt
+  gennemgang – dvs., forward og backward propagation – af et enkelt batch af
+  data. For eksempel, hvis du har 1000 samples og du vælger en batch størrelse
+  på 100, vil du have 10 iterationer per epoch. En træningssession består ofte
+  af flere epochs. Så for hver epoch/gennemgang, bliver hele træningssættet, med
+  alle samples, sendt igennem netværket fremad, hvor forudsigelserne bliver
+  lavet og der bliver udregnet “loss” af dem alle, som bliver samlet i et
+  gennemsnitligt tab for alle samples. Gradienten af det samlede tab(loss) mht.
+  vægtene i netværket beregnes ved backpropagation. Man får derved faktisk en
+  mere stabil gradient, sammenlignet med “Stochastic Gradient Descent”. Vægtene
+  bliver så opdateret ved at tage den negative gradient med en bestemt “learning
+  rate”.
+</p>
+<p>
+  “Mini-batch Gradient Descent” tager en mindre undergruppe af
+  træningsdatasættet – ikke hele datasættet og men heller ikke kun en enkelt
+  sample. Overordnet når man snakker om “Stochastic Gradient Descent” kan det
+  både være et enkelt sample, et batch eller hele datasættet. Ved gradient
+  descent bruger man learning rate. Det er en værdi, som kontrollerer, hvor
+  store skridt optimeringsalgoritmen tager, mens den søger efter det mindste
+  tab(loss). Mht. learning rate tager man og minusser man parametrene fra det
+  neurale netværk, vægte og bias, med learning-rate ganget gradienten til det
+  bestemte parameter.
+</p>
+<p>
+  Hvor hurtigt vægtene og bias skal justeres kaldes for “learning rate”, man kan
+  også tænke på det ved at forestille sig at man står på en bakke, hvor der er
+  en dal, og går et skridt ned mod dalen. Learning rate er hvor stort det skridt
+  man tager er. Hvis man tager et for stort skrid(høj learning rate) kan man
+  komme for langt og gå helt over dalen. Hvis du tager for små skridt (lav
+  learning rate), kan det tage meget lang tid at nå bunden, eller du kan blive
+  fast i en lille fordybning og tro, du har fundet bunden, selvom der er et
+  lavere sted et andet sted. Så en høj learning rate kan føre til hurtig
+  træning, men man risikerer også at overskride det globale minimum i loss, mens
+  en lavere learning rate kan sikre en mere præcis gang mod minimummet, men kan
+  være for langsom og man risikerer at blive fanget i lokale minimummer.
+</p>
+<p>
+  Eksempel på at blive fanget ved et lokalt minimum:
+  https://youtu.be/M6utzROuk5s?feature=shared
+  https://youtu.be/cs0asrc2op8?feature=shared En for stor learning rate kan også
+  introducere svingninger i træningsprocessen, hvor modellen ikke stabiliserer
+  sig og i stedet fortsætter. Nogle optimizers, såsom “adam”(Adaptive Moment
+  Estimation) er mere adaptiv, hvor den justerer learning rates for hvert
+  parameter i modellen, hviket fører til hurtigere og mere stabil gradient
+  descent. Den tilføjer “momentum” til gradienterne i optimizeren, altså i
+  analogien fra før hvor man går på bakken og prøver at finde dalen, så har man
+  momentum og gør det nemmere at undgå at blive fanget i en lokal minumum som
+  set i denne video: https://youtu.be/B4qIVGwky4c?feature=shared og med en bedre
+  højere learning rate: https://youtu.be/zYVaD4pQhkg?feature=shared. Så ved at
+  justere learning rate og momentum kan man finde det globale minimum hurtigere.
+  Der findes også learning rate decay
+</p>
