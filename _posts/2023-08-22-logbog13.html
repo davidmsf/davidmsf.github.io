@@ -1,0 +1,76 @@
+---
+layout: post
+title: "Logbog 13"
+subtitle: "Logbog: Gruppemøde og møde med Nolek"
+date: 2023-10-13 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi havde i dag et møde med vores product owner, Nolek. Før mødet diskuterede
+  vi i gruppen hver enkelt gruppe-medlems progression i valgfagene. Jeg
+  forklarede, at jeg var kommet videre med den dynamiske hjemmeside (SPA), hvor
+  man nu kan markere, om et lækagepunkt er ok/ikke ok og give en begrundelse.
+  Angående ml-projektet delte jeg, at jeg var begyndt at arbejde med tekstdata
+  fra begrundelser for lækager, men at de andre features i sample-dataen
+  dominerede tekstfeaturen. Jeg nævnte, at jeg overvejede at skabe en ny model
+  udelukkende for teksten eller afprøve en anden metode til at omdanne teksten,
+  før den bliver til input for modellen. Vi diskuterede også, hvordan vores
+  projekter kan integreres, og et gruppemedlem havde en smule forvirring omkring
+  omfanget af den dynamiske hjemmeside/SPA, som jeg derefter klargjorde. Jeg
+  præsenterede et diagram over, hvordan kaldene til den API, jeg bruger, ser ud:
+</p>
+<img
+  src="/img/posts/reactappdiagramrequestresponse.png"
+  style="max-width: 100%"
+/>
+<p>Jeg viste også, hvordan de data, jeg gemmer, ser ud:</p>
+
+<img src="/img/posts/testobjektjsonsamlet.png" style="max-width: 100%" />
+<p>
+  For nyligt ændrede jeg dataopbevaringen til at gemme i JSON-format. Så nu
+  bliver testobjekterne gemt i et JSON-dokument, der har testobjektets
+  serienummer som navn, så det nemt kan hentes ind på siden igen. Der er også et
+  overordnet JSON-dokument, der indeholder alle de oprettede testobjekters
+  serienumre/ID, så en oversigt over testobjekterne kan oprettes på siden.
+</p>
+<p>
+  Vi blev enige om, at testobjektets data skulle deles op, så begrundelser og
+  lækagestatusser bliver gemt separat, adskilt fra den overordnede information
+  om testobjektet. Siden skal sende forespørgsler og svar til den proxy, som et
+  andet gruppemedlem laver, hvorefter de sendes videre til en API gateway, som
+  et tredje gruppemedlem håndterer, og videre igen til microservices, der
+  håndterer dataen.
+</p>
+<p>
+  Under selve mødet med Nolek forklarede jeg igen fremdriften i de to
+  projekter/valgfag, jeg arbejder på, meget i tråd med det, jeg havde delt med
+  de andre gruppemedlemmer, såsom detaljer om tekstdata i ml-projektet. Product
+  owneren informerede om, at der ofte kun er ét ord i begrundelsen, fx
+  "fitting", hvilket ændrer måden, jeg forbereder tekstdataen på til træning.
+  Det blev også præciseret af product owneren, at man skal kunne give en
+  begrundelse, når man angiver, at sniffing pointet/lækage punktet er ok. Efter
+  min præsentation af fremskridtene i valgfagene blev jeg opfordret til at
+  anvende visuelle elementer, såsom diagrammer, til at forklare, da
+  præsentationen omhandler komplicerede og tekniske emner. Product owneren gav
+  udtryk for, at det virkede som om, der var nogle spændende projekter i gang
+  blandt mig og de andre gruppemedlemmer.
+</p>
+<p>
+  Jeg føler at det går okay med mine projekter ved hvert valgfag, men at jeg
+  mangler at skrive noget mere om single page applications/React, som jeg regner
+  med at få skrevet mere om den næste uges løb. En af grundene til at jeg har
+  skrevet mere om machine learning er at jeg synes det er et meget stort emne,
+  med meget teori, hvor React web appen er lidt mere praktisk, men der er stadig
+  en del teori omkring det jeg mangler at skrive om. Jeg tænker også, at jeg vil
+  forberede mig mere på at presentere det jeg har arbejdet med, til det næste
+  møde, især med hensyn til visuelle hjælpemidler såsom diagrammer mm. Jeg har
+  også tænkt mig at ændre hjemmesiden mht. at give en begrundelse når man
+  angiver at lækage punktet er ok. Der har været meget selvstendigt arbjede for
+  hvert gruppemedlem, hvilket også har gjort det svært at altid følge helt med
+  på hvad de arbejder med, hvilket medførte at et gruppemedlem ikke var helt
+  klar over omfanget af min single page application. Men vi aftalte at vi snart
+  vil begynde at flette vores projekter sammen, fx kald fra dem dynamiste side
+  til API’en, hvilket måske også vil medføre en bedre forståelse på tværs af
+  gruppen.
+</p>
