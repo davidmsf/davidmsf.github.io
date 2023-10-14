@@ -1,35 +1,55 @@
 ---
 layout: page
-title: Posts 
-background: '/img/posts/notes.avif'
+title: Posts
+background: "/img/posts/Geometric-Vector-Pattern.jpg"
 ---
 
-<div style="display:inline-block">
+<div style="display: inline-block">
   <h3>Categories:</h3>
 
-  <h5 style="float:left;padding-right: 10px; padding-left: 10px;" class="post-subtitle">
-    
-    <a href="{{ site.baseurl }}/posts/læringsplan.html"><i class="fa-solid fa-lines-leaning"></i> Læringsplan- og mål</a>
+  <h5
+    style="float: left; padding-right: 10px; padding-left: 10px"
+    class="post-subtitle"
+  >
+    <a href="{{ site.baseurl }}/posts/læringsplan.html"
+      ><i class="fa-solid fa-lines-leaning"></i> Læringsplan- og mål</a
+    >
   </h5>
 
-  <h5 style="float:left;padding-right: 10px; padding-left: 10px;" class="post-subtitle">
-    
-    <a href="{{ site.baseurl }}/posts/ML.html"><i class="fa-solid fa-circle-nodes"></i> Machine learning</a>
+  <h5
+    style="float: left; padding-right: 10px; padding-left: 10px"
+    class="post-subtitle"
+  >
+    <a href="{{ site.baseurl }}/posts/ML.html"
+      ><i class="fa-solid fa-circle-nodes"></i> Machine learning</a
+    >
   </h5>
 
-  <h5 style="float:left;padding-right: 10px; padding-left: 10px;" class="post-subtitle">
-    
-    <a href="{{ site.baseurl }}/posts/SPA.html"><i class="fa-solid fa-code"></i> Single Page Application</a>
+  <h5
+    style="float: left; padding-right: 10px; padding-left: 10px"
+    class="post-subtitle"
+  >
+    <a href="{{ site.baseurl }}/posts/SPA.html"
+      ><i class="fa-solid fa-code"></i> Single Page Application</a
+    >
   </h5>
 
-  <h5 style="float:left;padding-right: 10px; padding-left: 10px;" class="post-subtitle">
-    
-    <a href="{{ site.baseurl }}/posts/logbog.html"><i class="fa-solid fa-book-bookmark"></i> Logbog</a>
+  <h5
+    style="float: left; padding-right: 10px; padding-left: 10px"
+    class="post-subtitle"
+  >
+    <a href="{{ site.baseurl }}/posts/logbog.html"
+      ><i class="fa-solid fa-book-bookmark"></i> Logbog</a
+    >
   </h5>
 
-  <h5 style="float:left;padding-right: 10px; padding-left: 10px;" class="post-subtitle">
-    
-    <a href="{{ site.baseurl }}/2023/08/28/litteraturliste.html"><i class="fa-solid fa-list"></i> Litteraturliste</a>
+  <h5
+    style="float: left; padding-right: 10px; padding-left: 10px"
+    class="post-subtitle"
+  >
+    <a href="{{ site.baseurl }}/2023/08/28/litteraturliste.html"
+      ><i class="fa-solid fa-list"></i> Litteraturliste</a
+    >
   </h5>
 </div>
 
@@ -40,45 +60,34 @@ background: '/img/posts/notes.avif'
     <h2 class="post-title">{{ post.title }}</h2>
 
     {% if post.subtitle %}
-    <h3 class="post-subtitle">{{ post.subtitle }}
-
-    {% if post.subtitle contains "Læringsplan" %}
+    <h3 class="post-subtitle">
+      {{ post.subtitle }} {% if post.subtitle contains "Læringsplan" %}
       <i class="fa-solid fa-lines-leaning"></i>
-    {% endif %}
-    
-    {% if post.subtitle contains "Litteraturliste" %}
+      {% endif %} {% if post.subtitle contains "Litteraturliste" %}
       <i class="fa-solid fa-list"></i>
-    {% endif %}
-    
-    {% if post.subtitle contains "Logbog" %}
+      {% endif %} {% if post.subtitle contains "Logbog" %}
       <i class="fa-solid fa-book-bookmark"></i>
-    {% endif %}
-    
-    {% if post.subtitle contains "ML" %}
+      {% endif %} {% if post.subtitle contains "ML" %}
       <i class="fa-solid fa-circle-nodes"></i>
-    {% endif %}
-
-    {% if post.subtitle contains "SPA" %}
+      {% endif %} {% if post.subtitle contains "SPA" %}
       <i class="fa-solid fa-code"></i>
-    {% endif %}
-
+      {% endif %}
     </h3>
-    
+
     {% else %}
-    <h3 class="post-subtitle">{{ post.excerpt | strip_html | truncatewords: 15 }}</h3>
+    <h3 class="post-subtitle">
+      {{ post.excerpt | strip_html | truncatewords: 15 }}
+    </h3>
     {% endif %}
   </a>
-  <p class="post-meta">Posted by
-    {% if post.author %}
-    {{ post.author }}
-    {% else %}
-    {{ site.author }}
-    {% endif %}
-    on {{ post.date | date: '%B %d, %Y' }} &middot; {% include read_time.html content=post.content %}
+  <p class="post-meta">
+    Posted by {% if post.author %} {{ post.author }} {% else %} {{ site.author
+    }} {% endif %} on {{ post.date | date: '%B %d, %Y' }} &middot; {% include
+    read_time.html content=post.content %}
   </p>
 </article>
 
-<hr>
+<hr />
 
 {% endfor %}
 
@@ -86,16 +95,19 @@ background: '/img/posts/notes.avif'
 {% if paginator.total_pages > 1 %}
 
 <div class="clearfix">
-
   {% if paginator.previous_page %}
-  <a class="btn btn-primary float-left" href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr;
-    Newer<span class="d-none d-md-inline"> Posts</span></a>
+  <a
+    class="btn btn-primary float-left"
+    href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}"
+    >&larr; Newer<span class="d-none d-md-inline"> Posts</span></a
+  >
+  {% endif %} {% if paginator.next_page %}
+  <a
+    class="btn btn-primary float-right"
+    href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}"
+    >Older<span class="d-none d-md-inline"> Posts</span> &rarr;</a
+  >
   {% endif %}
-
-  {% if paginator.next_page %}
-  <a class="btn btn-primary float-right" href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older<span class="d-none d-md-inline"> Posts</span> &rarr;</a>
-  {% endif %}
-
 </div>
 
 {% endif %}
