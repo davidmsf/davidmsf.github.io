@@ -1,0 +1,85 @@
+---
+layout: post
+title: "SPA Progression - Uge 42"
+subtitle: "SPA: Hvordan det går med udviklingen af siden"
+date: 2023-10-17 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Jeg har udviklet videre på den single page application jeg, i samarbejde med
+  product owneren lækagetestfirmaet Nolek, har aftalt at lave. Mere specifikt
+  har jeg lavet “hovedsiden”, hvor testobjektet, fx rør til et køleskab, med
+  specifikke lækagepunkter bliver vist og kan redigeres. Som jeg tidligere havde
+  skrevet, har jeg omstruktureret koden, så dataen nu bliver gemt som json
+  filer. De bliver gemt og indlæst ud fra serienummeret, som fungerer som et id,
+  så for hvert nyt større komponent, bliver testobjekterne indlæst ud fra id.
+  Dette er som kontrast til hvad jeg tidligere gjorde og var i gang med, hvor
+  testobjektet bliver gemt i et fælles state. Der blev stadig gemt data, men
+  testobjekterne blev ikke indlæst fra API’en for hvert hovedkomponent. Denne
+  ændring blev foretaget fordi når applikationen vokser, bliver det sværere at
+  holde styr på et hoved state, dog som jeg har forstået er begge tilgange
+  valide.
+</p>
+<img src="/img/posts/nolekappcomponent.png" style="max-width: 100%" />
+<p>
+  En bruger kan nu oprette et testobjekt med sniffing points, serienummer,
+  maskinnr og type. Testobjekterne man har oprettet kan vælges ud fra en liste.
+  <img src="/img/posts/selecttestobject.png" style="max-width: 100%" />
+  Det valgte testobjekt kan ses i hvad jeg kalder “hoved” siden.
+</p>
+<img src="/img/posts/maintestobjectsite.png" style="max-width: 100%" />
+<p>
+  Brugeren kan skifte mellem om lækagepunktet er ok eller ikke ok ved at
+  “toggle” en “switch/checkbox”, hvorefter brugeren skal give en begrundelse.
+</p>
+<p>
+  Når brugeren ændrer på et lækagepunkts status, til at der ikke er ok, bliver
+  brugeren bedt om at give en begrundelse
+</p>
+<img src="/img/posts/reasonnolekapp.png" style="max-width: 100%" />
+<p>
+  Jeg skal have lavet det om, til at der også skal gives en begrundelse, når
+  lækage punktet bliver “togglet” til at være ok. En anden ting jeg har
+  overvejet og tænker at spørge Nolek om til næste møde, er om alle tidligere
+  begrundelser skal kunne vises til brugeren. Jeg tænker at en liste over
+  tidspunktet for begrundelsen, og så selve begrundelsen ville være informativt.
+  Men det bliver nok først en funktionalitet jeg vil indkorporere senere, og når
+  jeg har fået feedback fra Nolek. Indtil videre bliver alle begrundelserne
+  overskrevet, så der kun er en begrundelse til hvert lækagepunkt/”sniffing
+  point”. Jeg overvejer også tilføje en form hvor brugeren skriver sit navn, så
+  man kan se hvem der har registeret lækagen, men det er også noget jeg vil tage
+  op ved næste møde.
+</p>
+<p>
+  Jeg har snakket med et gruppemedlem om at skille json dokumentet op så
+  information om testobjekerne og hvert lækagepunkt er adskilt. Jeg overvejer i
+  øjeblikket at adskille det endnu mere, så hvert lækagepunkt bliver adskilt fra
+  de andre. Som det er nu så har jeg bare information om testobjektere med
+  lækagepunkterne json dokumenter på google storage, uden en database. Jeg
+  tænker at det bliver en del nemmere at organisere dataen når der bliver koblet
+  en database til, så jeg venter med at splitte det mere op, indtil der bliver
+  oprettet database til det. Jeg overvejer at lave et dokument der viser alle
+  tranasaktionerne som min web applikation har brug for og hvad der skal gemmes
+  i databasen, og så det bliver nemmere at koordinere og kæde mit projekt sammen
+  med det andet gruppemedlems API og database.
+</p>
+<p>
+  En anden funktionalitet jeg overvejer at inkorporere er at redigere
+  informationen til de oprettede testobjekter såsom type, serienr, maskinnr, og
+  hvilke lækagepunkter den har. Der er jo allerede et komponent til oprettelse
+  af testobjekterne, som har mange af de samme funktionaliteter som rediger
+  komponentet skal have, så det er oplagt at genanvende det. Jeg overvejer at
+  tilføje en property som komponentet får udefra, så der hvor komponentet bliver
+  anvendt kan man tilføje om det skal bruges til at oprette eller redigere et
+  testobjekt. Der skal også være den funktionalitet, som enhver anden
+  CRUD-applikation, at man kan slette tesobjektet, dette er noget jeg også vil
+  prøve at inplementere snart.
+</p>
+<p>
+  Jeg har prøvet mig meget frem og eksperimenteret med at bygge web
+  applikationen og har ikke set så mange tutorials ved dette valgfag som ved
+  machine learning. Men jeg har tænkt mig at se nogle flere tutorials mm. for at
+  få en dybere forståelse af React og praksisser hertil, og mere generelt single
+  page applications.
+</p>

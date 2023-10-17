@@ -1,0 +1,84 @@
+---
+layout: post
+title: "SPA vs MPA"
+subtitle: "Single Page Applications (SPA) vs Multi Page Applications (MPA)"
+date: 2023-10-16 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Jeg har en fundamental forståelse af, hvad en single page application (SPA)
+  er. Dog er det til tider godt at validere denne forståelse og ydermere bygge
+  videre på den. I denne blogpost vil jeg uddybe forskellen mellem multi page
+  applications (MPA) og single page applications.
+</p>
+<p>
+  Traditionelt bygges hjemmesider således, at når en bruger besøger en side,
+  bliver der sendt en request til serveren, serveren henter data fra databasen
+  og så sender sender den en response tilbage med HTML, css og js, så siden kan
+  blive “rendered” i browseren. Denne proces gentages, hver gang en bruger
+  besøger en ny side, fx ved at klikke på et link. Dette kaldes for en multi
+  page application (MPA). Denne måde at skabe webapplikationer var meget brugt
+  førhen, i webudviklingens tidligere dage. For nogle år siden skete der et
+  skift i udviklingen af webapplilationer, hvor det nu er blevet mere
+  almindeligt, og populært, at også lave single page applications, udover de
+  traditionelle MPA’s.
+</p>
+<p>
+  Ved en SPA bliver der loadet en masse javascript initielt, så ved den første
+  request og efterfølgende response fra serveren, bliver der sendt html, css og
+  en hel del javascript, således at det meste af funktionaliteten håndteres ved
+  klient-siden. Efterfølgende anmodninger/requests henter primært data, fx via
+  en API. Den primære forskel mellem MPA og SPA er, at ved MPA sendes der en ny
+  request til serveren for hver ny side, mens ved SPA indlæses siden først én
+  gang, og ved de efterfølgende requests håndteres data hentning gennem en API.
+</p>
+<p>
+  Ved MPV er en fordel søgemaskineoptimering, så du kan håndtere at din side er
+  optimeret til fx googles søgemaskine. Fordelen ved en MPA i forhold til SEO
+  (søgemaskineoptimering) er, at når en side indlæses, er alle metadata, såsom
+  titel, beskrivelse og tags, allerede konfigureret server-side og inkluderet i
+  den HTML, der sendes til brugeren eller søgemaskinen, hvilket gør det nemmere
+  at indeksere siden af søgemaskiner som fx Google. I modsætning kan SPA'er
+  kræve, at klienten fuldt ud loader javascipten for at bestemme de relevante
+  SEO tags, hvilket kan medføre udfordringer med hensyn til hvor effektivt
+  søgemaskiner kan indeksere og forstå indholdet af siden.
+</p>
+<p>
+  Dog kan brugerinteraktioner i nogle tilfælde laves bedre ved SPA’er, fx når en
+  form skal udfyldes og den bliver sendt gennem api, hvor der for brugeren kan
+  være vist en loading animation, og så kan siden melde tilbage om formen er
+  gennemført korrekt uden at siden bliver opdateret. I modsætning vil ved MPA
+  bliver siden opdateret til at sige hvordan formen blev behandlet.
+</p>
+<p>
+  Overordnet er SPA’er bedre til sider hvor du har høj interaktion, fx et
+  dashboard hvor du har mange forskellige elementer der interagerer med
+  brugeren, og som håndterer data transaktioner individuelt, fx Spotify, hvor du
+  ikke har lyst til at opdatere siden hver gang der bliver sendt en transaktion.
+  Hvis du ved din web app ikke skal hente data hele tiden kan multi page
+  applications være fordelagtigt. Hvis man henter en hel side hver gang, og den
+  ikke indeholder en masse data, hvor du vil spilde resourcer, så kan MPV’s være
+  en mulighed.
+</p>
+<p>
+  MPA’er kan også tilbyde en mere direkte håndtering af authentication og
+  authorization på serveren ved requests. Dette kan føre til en stærkere
+  "separation of concerns" ved MPA’s, hvor serveren fuldstændig håndterer
+  beslutningen om hvad brugeren har adgang til. Beslutningen om adgang træffes
+  stadig på serveren ved SPA’er, men håndteringen af disse beslutninger sker i
+  en mere dynamisk interaktion mellem klienten i browseren og serveren.
+</p>
+<p>
+  Så overordnet har SPA’er dynamisk indhold og interaktioner uden at skulle
+  genindlæse hele siden. Jeg tror det er en okay beslutning at lave
+  administation af Nolek’s testobjekter mht. lækage som en SPA. Det er lidt som
+  et dashboard hvor man kan ændre på hvert sniffing points/lækage punkters
+  status, hvor det dynamisk bliver sendt til API’ens endpoints. Derudover ved
+  oprettelsen af testobjekter kan brugeren interaktivt oprette lækagepunkter ved
+  at klikke på testobjekt billedet, hvilket ligegyldigt hvad skal laves med
+  javascript, selv hvis web applikationen er multi page. Overordnet tror at det
+  er en godt nok valg at lave siden som en single page applikation, i dette
+  tilfælde i React. Overordnet afhænger valget mellem SPA og MPA af
+  applikationens behov og ønskede brugeroplevelser.
+</p>
