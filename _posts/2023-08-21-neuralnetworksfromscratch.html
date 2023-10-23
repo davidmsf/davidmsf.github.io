@@ -70,9 +70,11 @@ background: "/img/posts/Screenshot.png"
   kan få en fejl ved det. Man undgår dette ved at minusse det største tal i
   outputtet med hvert nummer, derefter kan man tage det som eksponent til e.
   Efter overflow prevention nomaliserer man de numre man får fra den
-  eksponentielle funktion, ved at dividere hvert nummer med summen af numrene
-  fra outputs. Så softmax funktionen er at eksponere output numrene fra det
-  sidste lag og derefter normalisere dem.
+  eksponentielle funktion. Efter at have beregnet den eksponentielle værdi for
+  hvert element, skal vi normalisere disse værdier, så de alle tilsammen giver
+  1. Dette gøres ved at dividere hver eksponentielle værdi med summen af alle de
+  eksponentielle værdier. Så softmax funktionen er at eksponere output numrene
+  fra det sidste lag og derefter normalisere dem.
 </p>
 <img src="/img/posts/softmax.png" style="max-width: 100%" />
 
@@ -103,8 +105,22 @@ background: "/img/posts/Screenshot.png"
   -log(prediction), hvor prediction er den klasse der bliver forudsagt i forhold
   til den sande klasse, i hvert tilfælde. Så jo sikre forudsigelsen er jo mindre
   er loss, og omvendt jo mindre tallet for sikkerheden af forudsigelsen er, jo
-  højere er loss. Fx -log(0.7) = 0.36 og -log(0.5) = 0.69. I hver række i
-  batchen
+  højere er loss. Fx -log(0.7) = 0.36 og -log(0.5) = 0.69. Hvis vi kigger på
+  hvordan loss bliver udregnet, så er det -y * log(p), hvor y er den faktiske
+  klasse, og p er forudsigelsen/prediction. Den faktiske klasse bliver ofte
+  repræsenteret som en one-hot encoded (fx [0,1,0]). Her vil de fleste værdier
+  være 0, fordi den faktiske klasse er markeret med 1, mens de andre klasser er
+  markeret med 0. Dette svarer til at se på −1 * log(prediction), eller bare
+  -log(p), hvor y er 1, og hvor p er "prediction" som er sandsynligheden, som
+  modellen forudsiger er den faktiske klasse. Hvis vores model er ret sikker og
+  tildeler en sandsynlighed på p = 0.9 til den faktiske klasse, vil tabet kun
+  være omkring 0.11. Hvis modellen derimod er usikker og giver en sandsynlighed
+  på p = 0.5, stiger tabet til 0.69. Og hvis modellen næsten er sikker på, at
+  det er den forkerte klasse ved at give en meget lav sandsynlighed som p = 0.1
+  til den rigtige klasse, vil tabet være hele 2.3. Dette illustrerer, hvordan
+  loss funktionen Categorical Cross-Entropy straffer modellen for at være for
+  sikker på forkerte forudsigelser, og opfordrer den til at lave bedre
+  forudsigelser.
 </p>
 
 <p>
