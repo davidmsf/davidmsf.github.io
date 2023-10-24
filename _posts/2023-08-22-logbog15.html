@@ -1,0 +1,40 @@
+---
+layout: post
+title: "Logbog 15 - Gruppemøde og produktvejledning"
+subtitle: "Logbog: Gruppemøde og produktvejledning 24/10/2023"
+date: 2023-10-24 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi havde i dag et gruppemøde efterfulgt af produktvejledning. Vi snakkede til
+  gruppemøde om hvordan vi skal samle projektet. Når der bliver sendt en request
+  fra SPA’en til API’en går den igennem en “proxy” der tager imod requesten og
+  tjekker for trudsler i den. Det er blevet besluttet at bruge en enkelt server
+  istedet for at have proxy’en på en separat. Hvis der ikke er nogen sql
+  injektioner, scripts eller andet ondsindet kode, bliver den sendt videre til
+  en api gateway, hvor den bliver sendt videre til et bestemt endpoint der går
+  til en microservice og derefter en influxdb hvor dataen bliver lagret. Der
+  blev også fra gruppemedlemmet, der står for lagring af data, forslået at have
+  en separat database til det generelle information til hvert testobjekt.
+</p>
+<p>
+  Vi snakkede om hvordan strukturen skal være for hvert testobjekt og
+  lækagepunkt. Vi snakkede om at lækagepunkterne skal være hver for sig. Der
+  blev fra et gruppemedlem, der står for lagring af data, givet et forslag til
+  hvordan dataen til dette sniffing point kan se ud:
+</p>
+<img src="/img/posts/forslagresponsefraapi.png" style="max-width: 100%" />
+<p>
+  Dog har vi aftalt at snakke videre omkring, hvordan dette bedst kan se ud. Vi
+  havde produktvejledning lige efter vores gruppemøde, hvor vi fortalte hvad vi
+  havde snakket om til gruppemødet. Vi fortalte at vi lige var begyndt på at
+  samle projektet. Der blev vist et diagram over, hvordan vi forestiller os, at
+  data flow’et i det samlede projekt kunne være. Der blev spurgt ind til hvordan
+  machine learning delene skulle passe ind i flow’et, hvor jeg fortalte at til
+  min del, ville der være requests til modellen gennem en api, hvor modellen så
+  ville ligge i en containerized docker fil. I denne container kører python
+  koden til at eksekvere modellen, der laver forudsigelser baseret på det data
+  der bliver sendt med anmodningen. Den anden ML del er hos proxy’en, hvor der
+  bliver tjekket om anmodningerne er okay.
+</p>
