@@ -7,17 +7,24 @@ background: "/img/posts/Screenshot.png"
 ---
 
 <p>
-  Jeg har nu prøvet at træne nogle modeller på data jeg har genereret. Jeg har
-  herefter fundet ud af hvordan man i Python gemmer den model, man har trænet,
-  og derefter indlæser den. Dette bliver gjort med et bibliotek, der hedder
-  Pickle. Jeg har besluttet mig for at udvide de data, jeg har genereret, så nu
-  indeholder hvert sample disse features: temp (mellem 15-30), tryk (mellem 2 og
-  8), alder i år (mellem 0 og 10) og hvilket materiale testobjektet er lavet af
-  (plast, kobber og sølv). Dette er i hver række i de data, der er blevet
-  genereret. Jeg har haft svært ved at finde noget rigtigt data at arbejde med,
-  så indtil videre er modellen kun trænet på det, jeg har genereret. Det ville
-  være godt, hvis jeg kunne få fat i noget data fra enten virksomheden vi
-  samarbejder med/product owner eller, hvis jeg kan finde noget andet på nettet.
+  Jeg har nu prøvet at træne nogle modeller på data jeg har genereret. Modellen
+  jeg har trænet laver "multi-class classification", altså hvor modellen
+  forudsiger mere end to klasser, i dette tilfælde forudsiger modellen hvilket
+  lækage punkt lækagen sker på. Der bliver, ved den genererede data som det
+  neurale netværk bliver trænet på, lavet en korrelation mellem de forskellige
+  features i dataen og hvilket lækagepunkt modellen forudsiger. Derved kan det
+  neurale netværk finde disse mønste i dataen og derved forudsige ud fra myt
+  data. Jeg har fundet ud af hvordan man i Python gemmer den model, man har
+  trænet, og derefter indlæser den. Dette bliver gjort med et bibliotek, der
+  hedder Pickle. Jeg har besluttet mig for at udvide de data, jeg har genereret,
+  så nu indeholder hvert sample disse features: temp (mellem 15-30), tryk
+  (mellem 2 og 8), alder i år (mellem 0 og 10) og hvilket materiale testobjektet
+  er lavet af (plast, kobber og sølv). Dette er i hver række i de data, der er
+  blevet genereret. Jeg har haft svært ved at finde noget rigtigt data at
+  arbejde med, så indtil videre er modellen kun trænet på det, jeg har
+  genereret. Det ville være godt, hvis jeg kunne få fat i noget data fra enten
+  virksomheden vi samarbejder med/product owner eller, hvis jeg kan finde noget
+  andet på nettet.
 </p>
 <p>
   Jeg har snakket med et andet gruppemedlem om, at vi skal lægge modellen op på
