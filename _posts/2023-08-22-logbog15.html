@@ -19,10 +19,25 @@ background: "/img/posts/journal2.avif"
   en separat database til det generelle information til hvert testobjekt.
 </p>
 <p>
-  Vi snakkede om hvordan strukturen skal være for hvert testobjekt og
-  lækagepunkt. Vi snakkede om at lækagepunkterne skal være hver for sig. Der
-  blev fra et gruppemedlem, der står for lagring af data, givet et forslag til
-  hvordan dataen til dette sniffing point kan se ud:
+  Jeg snekkede med gruppemedlemmet omkring hvordan dataen fra SPA’en skal
+  lagres. Jeg forklarede om alle de CRUD(create, read, update, delete)
+  transaktioner som web applikationen laver. Dette indebærer: create testobject,
+  fetch testobject, add/edit reason, edit status, select testobject, delete
+  testobject. Jeg mangler også at lave: edit testobject info dvs. image type
+  osv. og fetch allle begrundelser. Jeg forklarede at der var en del ting som
+  jeg forventer at lave om, som jeg beskrev hvordan dette kunne foregå. Jeg tror
+  at vi begge blev klogere på hvordan strukturen på databaserne og kaldene
+  gennem api’en til dem skal komme til at se ud. Der blev forslået fra
+  gruppemedlemmet at dataen kommer til at ligge i to databaser, en MSSQL
+  database og en influxDB. Testobjektet og lækagepunkter/sniffingpoints i kommer
+  til at blive lagret i en MSSQL database. Status og begrundelse kommer til at
+  ligge i en influxDB.
+</p>
+<p>
+  Vi snakkede om hvordan data strukturen skal være for hvert testobjekt og
+  lækagepunkt og status/begrundelse.Der blev fra et gruppemedlem, der står for
+  lagring af data, givet et forslag til hvordan dataen til begrundelsen og
+  status til et lækagepunkt kan se ud:
 </p>
 <img src="/img/posts/forslagresponsefraapi.png" style="max-width: 100%" />
 <p>

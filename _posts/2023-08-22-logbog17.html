@@ -1,0 +1,120 @@
+---
+layout: post
+title: "Logbog 17 - Overblik over projektet"
+subtitle: "Logbog: Gruppe- og Nolek møde plus overblik over projektet"
+date: 2023-10-27 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi havde i dag et møde med vores product owner Nolek og et gruppemøde. Vi
+  mødtes lidt før mødet med Nolek og fortalte hvad vi havde lavet. Jeg spurgte
+  også ind til dataen der bliver gemt for hver status/begrundelse i en influxDB,
+  som det andet gruppemedlem står for at lave. Jeg var lidt i tvivl om nogle af
+  værdierne/datapunkterne i dataen, specifikt id’erne fra rækken i tabellen.
+  Gruppemedlemmet fortalte at der var et id for hver række, og et id til
+  testobjektet og så et id til det lækagepunkt/sniffingpoint det tilhører. Jeg
+  spurgte ind til om det var nødvendigt at have id’er til både testobjekt og
+  lækagepunkt og ikke kun til lækagepunktet, siden lækagepunktet allerede har en
+  relation til testobjektet, hvorefter han forklarede at det er en god ide at
+  have begge, hvis man gerne vil have flere rækker til et testobjekt på en gang,
+  hvilket jo er noget der ofte sker.
+</p>
+<p>
+  Til mødet med Nolek præsenterede vi hver, hvad vi havde lavet siden vi sidst
+  havde haft et møde. Jeg havde lavet flere diagrammer denne gang, siden at jeg
+  sidste gang blev opfordret til at have flere visuelle hjælpemidler, til at
+  fremme forståelsen, af de tekniske sider af projekterne jeg arbejder med. Jeg
+  forklarede om, hvordan sammenhængen og relationerne mellem dataen er, og
+  hvordan data strukturen ser ud nu og hvordan det kommer til at se ud. Dette er
+  en Entity-Relationship Diagram der forklarer hvordan data’en er struktureret
+  og relaterer sig til hindanden, men det bliver ikke nødvendigvis hvordan det
+  kommer til at se ud i databasen:
+</p>
+<img src="/img/posts/entityrelationshipdiagram.png" style="max-width: 100%" />
+<p>
+  Som jeg også havde nævnt tidligere, fortalte jeg at dataen for hvert
+  testobjekt ligger i øjeblikket i et json dokument(på google firebase storage),
+  det et menigen at dette data bliver splittet op. Faktisk kommer dataen til at
+  ligge i to databaser, en MSSQL database og en influxDB. Testobjektet og
+  lækagepunkter/sniffingpoints i kommer til at blive lagret i en MSSQL database.
+  Status og begrundelse kommer til at ligge i en influxDB.
+</p>
+<img src="/img/posts/datastructurechange.png" style="max-width: 100%" />
+<p>
+  Jeg viste hvilke kald siden laver og kommer til at lave, først hvordan den er
+  nu:
+</p>
+<img src="/img/posts/requestsresponsestorageapi.png" style="max-width: 100%" />
+<p>
+  Og derefter hvordan siden kommer til at være, med hvilket data der bliver
+  sendt, ved kaldene til den API gateway, der sørger for at sende requests
+  videre til deres rette destination:
+</p>
+<img src="/img/posts/requestsresponseapigateway.png" style="max-width: 100%" />
+<p>
+  Jeg fortalte også hvordan strukturen på den webapplikation, som jeg er i gang
+  med at lave, ser ud:
+</p>
+<img src="/img/posts/reactappstructure.png" style="max-width: 100%" />
+<p>
+  Der findes et top/hoved komponent i React hjemmesiden kaldt “App”, denne
+  indeholder alle de andre underkomponenter og sørger for at de får det
+  information de skal have, specifikt id’er til testobjekter. Der er en funktion
+  til at sætte id’er til tesobjekter setId(), denne bliver sendt ud til
+  komponenter hvor der enten bliver valgt et testobjekt eller lavet et, så de
+  kan tilføje et id. Dette id får de andre komponenter så via hovedkomponenten:
+</p>
+<p>
+  Jeg præsenterede et forslag, til at vise alle begrundelser, for et specifikt
+  lækagepunkt. Jeg tænkte at det ville være nyttigt, at have en oversigt over,
+  hvad der var sket med et lækagepunkt over tid:
+</p>
+<img src="/img/posts/allreasonsdraft.png" style="max-width: 100%" />
+<p>
+  Jeg fik ikke så meget feedback på dette og product owneren giver generelt ikke
+  så meget feedback.
+</p>
+<p>
+  Med hensyn til ML delen af min præsentation forklareede jeg simpelt hvad det
+  er modellen gør:
+</p>
+<img src="/img/posts/neuralnetsimple.png" style="max-width: 100%" />
+<p>
+  Jeg forklarede at afhængigt af det data der bliver givet til modellen, så
+  giver modellen en forudsigelse, med en bestemt sandsynlighed, for at lækagen
+  sker på et punkt. Det er således en multi-class classification. Jeg viste også
+  en liste over hvordan enkelt ords begrundelserne ser ud:
+</p>
+<img src="/img/posts/reasonslist.png" style="max-width: 100%" />
+<p>
+  De bliver one hot encoded, så modellen kan tage imod dem, så der er et bestemt
+  ord for hver sample.
+</p>
+<p>
+  Jeg forklarede at for at det giver mening at træne et neuralt netværk, slal
+  der være nogle mønste i dataen. Jeg har lavet nogle korrelationer eller
+  sammenhænge mellem dataen og det lækagepunkt som der er en lækage på:
+</p>
+<img src="/img/posts/settinglabel.png" style="max-width: 100%" />
+<p>
+  Som man kan se, så bliver der udregent en ny værdi ud fra temperatur og tryk
+  lagt sammen, derefter er der en masse conditional statements ud fra dataen,
+  der returnerer et bestemt one hot encoded lækage punk, som fungerer som label.
+  På denne måde har jeg lavet en sammenhæng mellem det genererede data og lækage
+  punkter som labels.
+</p>
+<p>
+  På dette billede kan man se en forudsigelse som det modellen har lavet. Der er
+  et indput og så bliver der givet en forudsigelse:
+</p>
+<img src="/img/posts/screenshotprediction.png" style="max-width: 100%" />
+<p>
+  Jeg fortalte at jeg gerne vil prøve et ML-bibliotek og at valget står mellem
+  keras og tensorflow.keras. Det kode som modellen er skrevet på iøjeblikket
+  kommer fra en bog/tutorial der hedder “Neural networks from scratch in
+  Python”, og er noget jeg har fundet på github:
+  https://github.com/Dev-Gaju/NNFS-book-with-Implementation/tree/master. Jeg
+  forlkarede kort om fordelene og ulemperne ved de mest anvendte biblioteker:
+</p>
+<img src="/img/posts/mllibraries.png" style="max-width: 100%" />
