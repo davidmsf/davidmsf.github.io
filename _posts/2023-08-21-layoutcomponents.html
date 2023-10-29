@@ -1,0 +1,54 @@
+---
+layout: post
+title: "SPA vs MPA"
+subtitle: "Single Page Applications (SPA) vs Multi Page Applications (MPA)"
+date: 2023-10-16 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Layoutkomponenter er en nem måde at arrangere andre komponenter i React på. De
+  fungerer som strukturelle skabeloner, du kan bruge til at organisere og vise
+  andre komponenter eller html-elementer på en struktureret måde. Jeg fulgte en
+  video-tutorial, hvor det blev forklaret om og hvordan man implementerer
+  layoutkomponenter. Videoen viser, hvordan man laver et “split screen”
+  komponent, der opdeler indholdet i to moduler, venstre og højre. Indholdet
+  tilføjes gennem properties, som indsættes i hvert deres modul. Når man
+  anvender splitscreen-komponenten, tilføjer man venstre og højre indhold som
+  children React-elementer. Sådanne almindelige layouts som layoutkomponenter
+  ofte er, såsom splitscreen-komponenten, kan genanvendes flere steder i koden.
+  De fremmer modularitet ved at inkapsulere layoutet i separate komponenter og
+  styrker også 'separation of concerns', da man adskiller layout-logik i et
+  dokument for sig selv, i stedet for at blande det i det samme dokument med
+  præsentations-logik og forretnings-logik. Styling kan tilføjes direkte til
+  komponenter, ved hjælp af et bibliotek kaldet "styled-components", som gør det
+  muligt at skrive CSS direkte i komponentens koden.
+</p>
+<p>
+  Efter at have set videoen implementerede jeg, som det blev vist, et
+  splitscreen layoutkomponent. Jeg foretog dog nogle tilpasninger for bedre at
+  matche mit eget brugstilfælde. Som man kan se på billedet, bliver indholdet
+  passeret til splitscreen-layoutet som properties:
+</p>
+<img src="/img/posts/splitscreencomponent.png" style="max-width: 100%" />
+<p>
+  Komponenten gør det muligt at vise indhold side om side i to "paneler": et
+  venstre (LeftPane) og et højre (RightPane). I denne kode forventer
+  SplitScreen-komponenten to ReactElements: et til venstre- og højre panel.
+  Styled.div betyder, at man opretter et HTML div-element med CSS-egenskaber.
+  Jeg gjorde det også muligt at tilføje eksterne CSS-klasser, hvilket i mit
+  tilfælde gav mening, da jeg ønskede at tilpasse splitscreen-CSS'en specifikt
+  til, hvor komponenten blev brugt.
+</p>
+<p>
+  Der blev desuden vist, hvordan man kan lave en Modal som en layoutkomponent.
+  Logikken bag denne modals synlighed er inkapsuleret i selve komponenten. Jeg
+  bruger ikke denne metode i øjeblikket ved min modal komponent, dens synlighed
+  bliver istedet kontrolleret af dens parent. Min modal komponent siges at være
+  "controlled", mens den version der blev vist i video-tutoriallen er
+  "uncontrolled". Dette er noget jeg kommer nærmere i en af de næste blogindlæg.
+</p>
+<p>
+  Kilde: Layout Components | React Design Pattern -2 -
+  https://www.youtube.com/watch?v=wz5pgCWiqM4&t=2120s&ab_channel=CodingWithMr.M
+</p>
