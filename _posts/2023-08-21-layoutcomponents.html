@@ -21,7 +21,9 @@ background: "/img/posts/reactcode.png"
   komponenter og styrker også 'separation of concerns', fordi man adskiller
   layoutet i et dokument for sig selv. Styling kan tilføjes direkte til
   komponenter, ved hjælp af et bibliotek kaldet "styled-components", som gør det
-  muligt at skrive CSS direkte i komponentens koden.
+  muligt at skrive CSS direkte i komponentens koden. Dog er separation of
+  concerns mht. css og styled-components bedre med den traditionelle tilgang,
+  hvor man har css i et dokument for sig selv.
 </p>
 <p>
   Efter at have set videoen implementerede jeg, som det blev vist, et
@@ -38,7 +40,7 @@ background: "/img/posts/reactcode.png"
   Jeg gjorde det også muligt at tilføje eksterne CSS-klasser, da jeg ønskede at
   tilpasse splitscreen-CSS'en specifikt til, hvor komponenten blev brugt. Dette
   kunne dog også gøres i selve komponenten, med en property parameter der
-  angiver hvilken styling komponenten skal have.
+  angiver hvilken styling komponenten skal have. Begge tilgange er valide.
 </p>
 <p>
   Der blev desuden vist, hvordan man kan lave en Modal som en layoutkomponent.
