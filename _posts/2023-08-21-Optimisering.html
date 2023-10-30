@@ -73,9 +73,71 @@ background: "/img/posts/Screenshot.png"
   højere learning rate: https://youtu.be/zYVaD4pQhkg?feature=shared. Så ved at
   justere learning rate og momentum kan man finde det globale minimum hurtigere.
 </p>
-<p>Der findes også learning rate decay, som jeg vil læse og skrive mere om</p>
+<p>
+  Det er ofte bedst at starte med standardindstillingerne for optimizers, træne
+  modellen en smule gennem et par iterationer, og derefter justere værdierne for
+  optimering/gradient descent baseret på observationerne. Hvordan du vælger
+  learning rate, og andre parametre, afhænger af modellen, data, inklusiv
+  datamængden og hvordan vægte og biases bliver initialiseret. Der er ingen
+  enkelt, bedste måde at indstille “hyperparametre” på. Hyperparametre er
+  værdier “uden for” modellen der bruges til at konfigurere modellen, altså ikke
+  de indre parametre som vægte og bias, men istedet learning rate, batch size,
+  altal lag i netværket mm., som man selv indstiller. En af udfordringerne ved
+  at træne et neuralt netværk er at vælge de rette settings.
+</p>
+<p>
+  Der findes også learning rate decay. Det er ofte en god ide at starte
+  træningsprocessen med en større learning rate, og derefter skrue den ned til
+  mindre skridt. Hvis du starter med for små skridt, kommer du måske til at
+  sidde fast i et lokalt minimum. En learning rate decay metode er at reducere
+  indlæringsraten baseret på tabet/loss over epochs, for eksempel, hvis tabet
+  begynder at stabilisere sig eller begynder at "hoppe" med store intervaller.
+  Man kan enten programmere dette eller til at overvåge tabet og ændre learning
+  rate, eller blot følge tabet over tid og manuelt reducere indlæringsraten, når
+  man finder det passende. En anden mulighed, er at programmere en "Decay Rate",
+  som konstant skruer learning rate ned over tid, fx for hvert step/iteration
+  eller epoch. En metode er at for hver trin eller iteration i træningen
+  justeres learning rate baseret på denne formel learning rate*(1/(1+(step*decay
+  rate))). Et eksempel kunne være at man starter meden learning rate på 0.1, 100
+  steps/iterationer og en decay rate på 0.01, ved det første trin er bliver
+  learning rate udregnet til: 1/(1+(1*0.01)) = 0,99 * learning rate = 0,099. Ved
+  nr 50 trin bliver det til 1/(1+(50*0.01)) = 0,99 * learning rate = 0,067. Så
+  learning rate bliver justeret på med denne måde, så den hele tiden tager
+  mindre skridt gradvist over tid, først meget, men senere mindre skridt. Så jo
+  flere steps der bliver taget i træningen, jo mindre bliver learning rate. Det
+  sikrer, at mens træningen skrider frem, bliver justeringerne, som modellen gør
+  for hver batch af data, gradvist mindre og mindre, hvilket hjælper med at
+  stabilisere træningen og øge sandsynligheden for, at modellen finder et godt
+  minimum af loss.
+</p>
+<p>
+  Momentum kan forstås ved at forestille sig en bold, der ruller ned ad en
+  bakke. Selvom der er små huller eller bakker, fortsætter bolden med at rulle
+  mod et lavere minimum på grund af dens opbyggede fart. I gradient descent
+  hjælper momentum med at undgå små lokale minimum ved at opretholde en retning
+  mod globale minimum. Momentum tager hensyn til de tidligere gradienttrin, når
+  vægtene i et neuralt netværk opdateres. Dette hjælper modellen med at
+  fortsætte i samme retning som tidligere. En hyperparameter, altså en ekstern
+  parameter, bestemmer hvor meget af den tidligere opdatering der bevares. Denne
+  hyperparameter skal ligge mellem 0 og 1, hvor en høj værdi tæt på 1 betyder at
+  mere af den tidligere gradient bevares. Med momentum, i stedet for kun at
+  bruge den nuværende gradient til at opdatere parametrene, kombinerer vi den
+  nuværende gradient/opdatering med de tidligere opdateringer/gradienter. Dette
+  gør vægtopdateringer “glattere”, især hvor gradienten ændrer retning ofte. Man
+  minusser learning rate ganget med den nuværende gradient, fra den tidligere
+  gradient/opdatering, som er ganget med momentum hyperparameteren.
+</p>
+<img src="/img/posts/momentum.png" style="max-width: 100%" />
+<p>
+  weight_updates er den nye opdatering beregnet ved hjælp af den tidligere
+  momentum (layer.weight_momentums) og den nuværende gradient (layer.dweights).
+  self.momentum er hyperparameteren, der bestemmer, hvilken brøkdel af den
+  tidligere opdatering der skal bevares. self.current_learning_rate er
+  læringsraten. Efter beregning af weight_updates gemmes den i
+  layer.weight_momentums til brug i den næste iteration/step.
+</p>
 
 <p>
-  Kilde: Neural Networks from Scratch in Python Bog/PDF- Chapter 9 -
-  Backpropagation
+  Kilde: Neural Networks from Scratch in Python - Bog/PDF - Chapter 10 -
+  Optimizers
 </p>
