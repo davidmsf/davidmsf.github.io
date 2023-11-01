@@ -136,6 +136,18 @@ background: "/img/posts/Screenshot.png"
   læringsraten. Efter beregning af weight_updates gemmes den i
   layer.weight_momentums til brug i den næste iteration/step.
 </p>
+<p>
+  Der bliver forklaret om adam optimizer, der bruger konceptet “adaptive
+  learning rate” og momentum. Adaptive learning rate justerer indlæringsraten
+  under træningen for at sikre effektiv træning. Forskellige parametre, såsom
+  vægte og bias, kan have brug for at blive opdateret i forskellige rater. Adam
+  tilpasser indlæringsraterne for hver parameter, det betyder at for parametre
+  der har større gradienter (og derfor højest sandsynligt kræver mere
+  korrektion), bliver der taget større skridt/learning rate, mens der for
+  parametre med mindre gradienter tages mindre skridt. Dette skyldes, at
+  gradienten (hastigheden af ændring) kan være meget forskellig for forskellige
+  parametre.
+</p>
 
 <p>
   Kilde: Neural Networks from Scratch in Python - Bog/PDF - Chapter 10 -
