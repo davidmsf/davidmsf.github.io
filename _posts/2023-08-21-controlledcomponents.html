@@ -1,0 +1,69 @@
+---
+layout: post
+title: "Controlled vs Uncontrolled Components"
+subtitle: "SPA: React design pattern"
+date: 2023-10-16 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Controlled vs. uncontrolled i React har flere betydninger i forskellige
+  sammenhænge. I sammenhæng med formular-elementer i React, refererer en
+  "kontrolleret komponent" til et input, hvis værdi kontrolleres af tilstanden
+  inde i React-komponenten, normalt med en useState hook. Inputtets værdi styres
+  altid af React-tilstanden, og ændringer af den værdi håndteres af en funktion,
+  der opdaterer tilstanden, typisk gennem en onChange handler. Ved input formen
+  til create, når man skal oprette et testobjekt, i den SPA jeg laver, er
+  inputtene kontrolleret med useState. Hver ændring i fx inputtet handleSetType,
+  opdaterer tilstanden og den tilstand sætter direkte værdien af inputtet. Disse
+  states kommer fra forældrekomponenten. Der bliver i videoen vist hvordan en
+  ukontrolleret form kan se ud. En "ukontrolleret komponent" i React er, hvor
+  form-inputtet håndterer sin egen tilstand internt og ikke kontrolleres af
+  React-komponentens tilstand. Typisk ville du bruge ref til at få værdien fra
+  DOM'en, når du har brug for den, i stedet for at have en useState, der sporer
+  og opdaterer dens værdi hele tiden.
+</p>
+<img src="/img/posts/controlledformtype.png" style="max-width: 100%" />
+<img src="/img/posts/controlledformtype2.png" style="max-width: 100%" />
+<p>
+  I en bredere sammenhæng kan en "kontrolleret komponent" referere til enhver
+  komponent, hvis opførsel og tilstande styres af de props, den modtager fra en
+  parent/forældrekomponent. Hvis du for eksempel har en Modal komponent, og den
+  modtager en for eksempel isVisible eller onClose prop fra en forælder, der
+  fortæller den, om den skal vises eller ej, er modalen kontrolleret af
+  forælderen. I den React web applikation jeg laver, er Modals kontrolleret
+  igennem props den modtager fra en parent komponent, dog er isVisible
+  tilstanden overhovedet ikke passeret til Modal komponenten i øjeblikket, men
+  findes i forældrekomponenten og styrer hvornår Modal'en vises. Den får dog en
+  “onClose” funktion, fra parent komponenten, der bliver passeret som prop til
+  Modal'en. Med hensyn til ukontrolleret Modals, er disse komponenter, der
+  håndterer sin egen tilstande, såsom fx at bestemme hvornår den er synlig mht.
+  Modals. Dette er lidt anderledes fra eksemplet med formularer, ved i en
+  bredere sammenhæng med hensyn til ukontrollerede komponenter, handler det mere
+  om indkapsling og at det er komponenten selv, der styrer sine tilstande.
+</p>
+<p>
+  En kontrolleret form html-element har sin værdi kontrolleret af
+  React-tilstande som useState. Et ukontrolleret inputfelt eller komponent
+  håndterer selv sin tilstand uden at være afhængig af eksterne tilstande. For
+  inputfelter betyder dette ofte, at man anvender refs for at tilgå elementets
+  nuværende værdi direkte fra DOM'en, istedet for at løbende at blive ændret fra
+  en tilstand med usestate. I tilfælde af komponenter som Modals, betyder det at
+  være ukontrolleret, at komponenten selv skifter sin visningstilstand,
+  uafhængigt af forældrekomponenters indflydelse. En kontrolleret komponent har
+  sin adfærd såsom fx som synlighed kontrolleret af props fra dens
+  parent/forælder.
+</p>
+<p>
+  Jeg har også implementeret kontrollerede komponenter mange andre steder i
+  koden til React applikationen. For eksempel, når der tilføjes et lækagepunkt,
+  bliver tilstanden for dette håndteret i forældrekomponenten. Herefter bliver
+  de tilføjede lækagepunkter vist i et child komponent. I denne proces anvender
+  jeg props til at videregive tilstande vedrørende lækagepunkterne til child
+  komponentet. Dette sikrer giver en mere klar struktur for tilstandshåndtering
+  i applikationen.
+</p>
+<p>
+  Kilde: Controlled vs Uncontrolled Components | React Design Pattern -3 -
+  https://www.youtube.com/watch?v=E28TNQ9eK50&list=PLgeETUaEEds5HE2uGWezJxYeZwpBonHr-&index=3&ab_channel=CodingWithMr.M
+</p>

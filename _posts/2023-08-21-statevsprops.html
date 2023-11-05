@@ -1,0 +1,29 @@
+---
+layout: post
+title: "State og props i React"
+subtitle: "SPA: React state vs props"
+date: 2023-11-05 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Jeg vil kort forklare om forskellen mellem props og state i React, som er
+  uundgåelige når man laver en web applikation i React og noget jeg selv har
+  fået en forståelse af efterhånden. Props er som argumenter til en funktion,
+  som gives til en komponent, og bruges til at initialisere komponenten eller
+  afgøre, hvordan den skal renders. For eksempel kan en komponent, som står for
+  at tælle et tal, få en initial tælleværdi som en prop. På den anden side er
+  state noget, der håndteres inden i en komponent, og som kan opdateres der.
+  State bruges til at opbevare og opdatere data, der ændrer sig over tid, som
+  f.eks. den nuværende tælleværdi i en tæller-komponenten. Når state ændres, får
+  det komponenten til at render sig selv igen. Hovedforskellen er, at props
+  gives til en komponent udefra, mens state håndteres inden i komponenten. Så
+  props bruges til at videregive data ned i komponenter, mens state bruges til
+  at holde styr på data, der ændrer sig inden i en komponent, som f.eks.
+  brugerinput i et formular-element.
+</p>
+
+<p>
+  Kilde: React State Vs Props -
+  https://www.youtube.com/watch?v=IYvD9oBCuJI&ab_channel=WebDevSimplified
+</p>

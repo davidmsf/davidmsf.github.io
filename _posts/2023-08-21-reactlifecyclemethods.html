@@ -1,0 +1,76 @@
+---
+layout: post
+title: "React Lifecycle mht. komponenter"
+subtitle: "SPA: The React Lifecycle of a Functional Component"
+date: 2023-11-05 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>React komponenters livscyklus går gennem tre hovedfaser:</p>
+<ul>
+  <li>
+    <strong>Mounting(Montering):</strong> Mounting er der hvor komponenten først
+    bliver renderet og vist på skærmen. Det er her, komponenten oprettes og
+    indsættes i DOM (Document Object Model).
+  </li>
+  <li>
+    <strong>Updating:</strong> Efter mounting kan komponenten gå ind i
+    opdateringsfasen, når der sker ændringer i komponentens props eller state.
+    Disse ændringer vil udløse en opdatering af komponenten, som bliver renderet
+    igen, så de nye data kan vises på skærmen.
+  </li>
+  <li>
+    <strong>Unmounting:</strong> Den sidste fase er afmonteringsfasen, hvor
+    komponenten fjernes fra DOM. Det sker når komponenten fjernes.
+  </li>
+</ul>
+<p>
+  React har en ny funktion kaldet "useEffect", som gør det nemmere at arbejde
+  med ting som kan påvirke andre dele af din app eller som skal ske som et
+  resultat af ændringer i din app. useEffect kan bruges til at udføre
+  forskelligartet logik i faser af komponentens livscyklus:
+</p>
+
+<p>
+  Under monteringsfasen: useEffect kan udføre logik, når komponenten først
+  monteres på skærmen. Dette kan gøres ved at give useEffect funktionen et tomt
+  array som parameter.
+</p>
+<pre>
+useEffect(() => {
+  // Koden bliver kørt ved montering
+}, []);  // Tom array indikerer, at denne useEffect kun skal køre ved montering og afmontering
+</pre>
+<p>
+  Under opdateringsfasen: useEffect kan udføre logik, når bestemte props eller
+  state værdier ændres, ved at levere en array som parameter, med de værdier,
+  der skal overvåges. Dette sker for eksempel i min SPA, hvor der bliver valgt
+  eller oprettet et nyt testobjekt, hvor der bliver overvåget om id værdien til
+  testobjektet forandrer sig.
+</p>
+
+<pre>
+useEffect(() => {
+  // Koden bliver kørt hver gang 'someValue' ændres
+}, [someValue]);
+</pre>
+<img src="/img/posts/useeffect.png" style="max-width: 100%" />
+
+<p>
+  Under afmonteringsfasen: useEffect kan udføre oprydningslogik, når komponenten
+  afmonteres, ved at returnere en oprydningsfunktion fra useEffect.
+</p>
+<pre>
+useEffect(() => {
+  // Koden bliver kørt ved montering
+
+  return () => {
+    // Koden bliver kørt ved afmontering
+  };
+}, []);
+</pre>
+
+<p>
+  Kilde: Learn React #8: The React Lifecycle of a Functional Component -
+  https://www.youtube.com/watch?v=Zz9pLellSQA&t=2s&ab_channel=AnthonySistilli
+</p>
