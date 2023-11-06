@@ -1,44 +1,19 @@
 ---
 layout: post
-title: "Logbog 18 - Gruppe- og Nolek møde"
-subtitle: "Logbog: Gruppe- og Nolek møde"
-date: 2023-11-03 4:45:13 -0400
+title: "Logbog 18 - Processgruppemøde"
+subtitle: "Logbog: Processgruppemøde 31/10/23"
+date: 2023-10-31 4:45:13 -0400
 background: "/img/posts/journal2.avif"
 ---
 
 <p>
-  Vi havde i dag et gruppemøde efterfulgt af et møde med Nolek. Ved gruppemødet
-  snakkede vi sammen om hvordan projektet kan flettes sammen. Vi talte om hvad
-  det andet gruppemedlem havde lavet, for at gøre det muligt at bruge api
-  gateway’en, med flere endpoints. Jeg har måske fortalt der før, men det
-  foregår ved at der bliver sendt et request til api gateway’en hvorefter
-  rabbitmq consumer requestet som en microservice, data’en fra requestet bliver
-  derefter fra rabbitmq indlæst som json, hvorefter det kan gemmes i en sql
-  database ved hjælp af ef core i asp.net. Derefter bliver der sendt et response
-  tilbage samme vej. Dette er overordnet sådan jeg har forstået strukturen og
-  flow’et af data’en i backend, selvom jeg må indrømme at det til tider kan være
-  lidt forvirrende da jeg ikke selv har arbejdet med dette. Jeg har dog efter
-  vores møder installeret RabbitMQ og testet api og servicen til at gemme et
-  testobjekt i sqldatabasen. Efter lidt trial and error, fik jeg det gemt i den
-  lokale database, via et request fra programmet postman.
-</p>
-<p>
-  Vi snakkede også om hvordan billederne fra SPA’en skal gemmes. Vi aftalte at
-  jeg skal prøve at resize billederne i SPA’en, før de bliver gemt på serveren,
-  i tilfælde af at det er store billeder der fylder meget og sænker
-  overførselstiden.
-</p>
-<p>
-  Der er også et andet gruppemedlem der laver en android app med samme
-  funktionalitet som min SPA, dette skal vi også tage hensyn til da hans data
-  højest sandsynligt også skal gemmes i databasen. Det fjerde gruppemedlem
-  fortalte om progressionen i den proxy der står for sikkerheden, så der ikke
-  kommer ondsindede requests igennem til api gateway’en og videre på serveren.
-</p>
-<p>
-  Ved nolek mødet fortalte jeg at jeg havde afprøvet at træne en model på det
-  genererede data med tensorflow.keras. Det er nøjagtigt det samme resultat som
-  ved det andet kode uden et bibliotek, ved at den forudsiger et lækagepunkt.
-  Jeg fortalte også hvad jeg havde lavet i ugens løb af tilføjelser til SPA’en.
-  Jeg har tilføjet at man kan redigere et testobjekt.
+  Jeg havde i dag et processgruppemøde, hvor vi snakkede om de overordnede
+  læringsmål, jeg fortalte at de overordnede mål stadig var gyldige, men at der
+  nok skal laves små rettelser til målene. Jeg fortalte til et tidligere
+  processgruppemøde at jeg ikke har brugt det kanban board nok, som jeg har
+  oprettet tidligere i semesteret. Jeg er nu begyndt at bruge det en hel del
+  mere. Dette kan nok skyldes at jeg i starten mere havde brug for
+  vidensindsamling, hvor kanban bordet ikke var lige så brugbart, som nu, hvor
+  der er mange tekniske og praktiske ting jeg skal holde styr på. Dog har det
+  også været en aktiv indsats for mig at begynde at bruge det mere.
 </p>
