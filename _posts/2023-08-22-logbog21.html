@@ -1,0 +1,24 @@
+---
+layout: post
+title: "Logbog 21 - Køb af server og videre samarbejde"
+subtitle: "Logbog: Videre samarbejde 08/11/23"
+date: 2023-11-08 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi har anskaffet en server, og i dag har vi brugt tiden på at sætte den op.
+  Efterfølgende forsøgte jeg at erstatte den gamle Google API med serverens nye
+  API. Opsætningen af serveren og integrationen af API'en tog noget tid, men var
+  en lærerig oplevelse. Serveren kører Linux uden et grafisk brugerinterface
+  (GUI), så alt konfigurationen var gennem en web ssh terminal. Vi installerede
+  Docker samt det image, som et andet gruppemedlem havde udviklet, bestående af
+  en API-gateway, microservices og databaser.
+</p>
+<p>
+  Der var flere konfigurationsopgaver, herunder også integration af nye
+  opdateringer fra GitHub. For eksempel måtte jeg opsætte en 'CORS header' for
+  at sikre, at websiden kunne modtage svar fra serveren. Mit seneste arbejde har
+  bestået i at opdatere API-kaldene, så webapplikationen nu bruger den nye
+  API-URL fra serverens API-gateway, hvilket jeg snart er færdig med.
+</p>
