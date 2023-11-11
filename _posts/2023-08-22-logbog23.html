@@ -1,0 +1,66 @@
+---
+layout: post
+title: "Logbog 23 - Gruppe og Nolek møde"
+subtitle: "Logbog: Gruppe og Nolek møde"
+date: 2023-11-10 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Jeg deltog i dag i et gruppemøde, forinden gruppens møde med product owneren
+  Nolek. Jeg og et andet gruppemedlem startede med at prøve at finde en fejl på
+  serveren. Funktionen der tager både testobjektet og lækageresultatet, altså
+  status(om den er ok eller ej) og og begrundelse, og returnerer den til
+  klienten fra serveren, returnerede kun testobjektet. Men det andet
+  gruppemedlem fik fejlen ordnet, så serveren returnerede både testobjekt og
+  lækageresultat.
+</p>
+
+<figure>
+  <img src="/img/posts/serverfejl.png" style="max-width: 100%" />
+  <figcaption style="font-style: italic">
+    Fejlfinding med gruppemedlem
+  </figcaption>
+</figure>
+
+<p>
+  Vi havde derefter gruppemøde hvor vi snakkede om hvordan vi kunne samle
+  projektet og hvorvidt den sikkerheds proxy, som det andet gruppemedlem står
+  for, skal ligge på samme server. Jeg tror ikke at vi blev helt afklaret på
+  dette emne. Vi forklarede hver især lidt om hvordan det gik med vores
+  projekter, hvor et andet gruppemedlem og jeg forklarede at der havde været
+  mange fejl og ting der skulle rettes ved opsætningen af API’en på serveren.
+</p>
+<p>
+  Der blev også snakket om det andet gruppemedlems projekt med en android app og
+  database, hvor der også blev brugt lidt tid på at rette fejl mht. forbindelsen
+  fra app’en til serveren med API’en. Gruppemødet blev efterfulgt af det
+  sædvanelige møde med Nolek om fredagen. Vi forklarede hver især hvad vi havde
+  lavet i ugens løb, jeg fortalte om vores køb af server og de medfølgende bugs,
+  som vi havde brugt en hel del tid på. Derefter viste jeg vores product owners
+  fra Nolek webapplikationen, som jeg havde ændret til at bruge API’en fra
+  serveren, dog var der enkelte funktioner der endnu ikke virkede med API’en, en
+  af grundende var en fejl fra serverens side, med hensyn til at opdatere et
+  testobjekt, mens en anden funktionalitet var, at sige at alle lækagepunkter er
+  ok.
+</p>
+<p>
+  Jeg forklarede også at jeg ikke havde lavet meget mht. machine learning i
+  denne uge, pga. at få siden til at virke med den backend, som det andet
+  gruppemedlem havde lavet, var en høj prioritet. Jeg fortalte at jeg gerne vil
+  lave en side i webapp’en, til at skrive værdier ind i en html form, som så kan
+  sendes til den machine learning model jeg har lavert, med hensyn til at
+  forudse hvilket lækagepunkt, der sker et lækage på. Dette tænker jeg skal ske
+  gennem en API i et python framework kaldet Flask, som så får modellen til at
+  forudse og udregne hvilket lækagepunkt den forventer at lækagen sker på, for
+  derefter at sende en response tilbage til webapp’en, hvor dette bliver vist.
+</p>
+<p>
+  Jeg regner med at denne side bliver afskåret fra resten af siden, så jeg
+  kommer til at bruge routing i React, som jeg indtil videre ikke har brugt.
+  Derved kommer denne side til at have en separat URL. Derudover overvejer jeg
+  at pakke både React hjemmesiden og Flask API'en i Docker-containere, hvilket
+  hjælper med at sikre konsistens på tværs af forskellige udviklings- og
+  produktionsmiljøer. Dette vil gøre det muligt at deployere dem som
+  containerized images på serveren.
+</p>
