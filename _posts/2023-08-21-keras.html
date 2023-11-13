@@ -1,0 +1,112 @@
+---
+layout: post
+title: "TensorFlow.keras tutorial"
+subtitle: "ML: Deep Learning with Python, TensorFlow, and Keras tutorial "
+date: 2023-11-6 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  For at komme i gang med at bruge machine learning biblioteket tensorflow
+  keras, så jeg en tutorial, der viste hvordan man benyttede det, til at træne
+  et neuralt netværk. Der blev givet et grundlæggende introduktion til neurale
+  netværk, der forklarede hvordan den består af indgangs- og udgangslag, med
+  skjulte lag imellem.
+</p>
+<p>
+  I videoen bliver det forklaret, at neurale netværk anvender input data (såsom
+  pixes som features i et billede) og transformerer dette data gennem netværket
+  for at producere udgange, fx fot at genkende et objekt i billedet, dette kunne
+  for eksempel være at skelne mellem hund og kat. Dette er muligt gennem
+  netværkets struktur, som består af forskellige lag: input laget, skjulte
+  lag(hidden layers) og output laget.
+</p>
+<p>
+  De skjulte lag i et neuralt netværk er vigtige til at lære og modellere
+  komplekse mønste og sammenhænge i dataene. Hvert skjult lag kan tænkes som et
+  niveau af abstraktion, hvor netværket gradvist lærer mere komplekse mønstre
+  data’en. For eksempel, i billedgenkendelse, kan et skjult lag fokusere på at
+  identificere kanter, et andet lag kan lære at genkende mere komplekse former,
+  og et tredje lag kan måske identificere specifikke objekter.
+</p>
+<p>
+  Uden disse skjulte lag ville et neuralt netværk kun kunne lære komplekse
+  sammenhænge, hvilket begrænser dets evne til at håndtere opgaver såsom
+  billedeklassificering. Flere skjulte lag giver netværket mulighed for at
+  konstruere en dybere forståelse af indgangsdataene, som er vigtigt for at få
+  præcise forudsigelser eller klassifikationer.
+</p>
+<p>
+  Antallet af neuroner i et neuralt netværk påvirker meget dens evne til at
+  processere og lære fra data. Ved input laget matcher antallet af neuroner
+  typisk antallet af features i dataen. Fx bliver hver pixel representeret af et
+  neuron, ved billedegenkendelse, når billeder er den data modellen trænes på.
+  Disse neuroner tager imod data og passerer disse værdier videre til de næste
+  lag uden at gøre noget.
+</p>
+<p>
+  Ved de gemte lag kan for få neuroner føre til underfitting, hvor netværket
+  hvor modellen ikke er i stand til at fange de underliggende mønstre i dataen.
+  For mange neuroner kan derimod føre til overfitting, hvor modellen bliver
+  meget præcis i at forudse ud fra det specifikke data, men er ikke god til at
+  generalisere. Neuroner i skjulte lag udfører størstedelen af den
+  beregningerne. Det er her, netværket lærer mønstre inden for dataen, hvor
+  hvert efterfølgende lag typisk lærer mere komplekse repræsentationer.
+</p>
+<p>
+  Antallet af neuroner i output laget bestemmes af typen af opgaven; om det er
+  regression eller klassifikation. For regressionsopgaver er der typisk en
+  enkelt neuron som output. For klassifikationsopgaver svarer antallet af
+  neuroner normalt til antallet af forudsigelser modellen skal lave, også kaldt
+  klasser. For eksempel ville et netværk designet til at identificere cifre fra
+  0-9 have 10 neuroner i outputlaget, hvilket også er tilfældet i dette eksempel
+  i videoen, som omhandler at genkende håndskrevne tal, fra 0-9 dvs. 10
+  neuroner, et til hvert tal, som output.
+</p>
+<p>
+  Hvis man skal have en model til at løse komplekse problemer, så er der måske
+  brug for flere lag og neuroner. Store netværk med mange neuroner har brug for
+  mere data at blive trænet på, og omvendt er mindre netværk bedre egnet til at
+  håndtere mindre mændger data.
+</p>
+<p>
+  Det bliver også hurtigt forklaret om aktiverings funktioner, som jeg måske
+  tænker på at skrive mere om, på et senere tidspunkt. Kort sagt afgør disse
+  funktioner om et neuron skal aktiveres, dvs, outputtet af dette neuron,
+  baseret på input værdierne til neuronet, ganget med vægtene, lagt sammen, plus
+  bias (denne sum, inputs * vægte + bias, kaldes også den vægtede sum, eller
+  “weighted sum”). Der bliver brugt ReLU som aktiveringsfunktion, ligesom ved
+  træning af den tidligere model
+</p>
+<p>
+  Tutoriallen demonstrerer opbygningen af et neuralt netværk ved brug af
+  TensorFlow og Keras. Det dækker processen med at definere en sekventiel model,
+  hvor lagene følger hinanden i en selvens, en efter hinanden, og tilføje disse
+  lag, input-, hidden og output-lag, og vælge de passende aktiveringsfunktioner.
+  Der bliver i tutoriallen brugt et såkaldt MNIST-datasæt, som inkluderer
+  billeder af håndskrevne cifre, til at demonstrere hvordan arbejder med data i
+  tf.keras. Der bliver vist, hvordan man indlæser, normaliserer dvs. skalerer
+  pixelværdierne og deler dataene op i trænings- og testsæt.
+</p>
+<img src="/img/posts/tfkerasmodelfit.png" style="max-width: 100%" />
+<img src="/img/posts/keraspredict.png" style="max-width: 100%" />
+<p>
+  Der bliver vist, hvordan man opsætter modellen til at bruge en optimizer,
+  Adam, og en loss-function, categorical cross-entropy, ligesom den anden
+  opsætning jeg har brugt til træning af den tidligere model. Modellen trænes
+  derefter ved hjælp af træningsdata’en. Efter træning vurderes modellens
+  ydeevne ved hjælp af testdata. Dette trin tjekker for overfitting og sikrer,
+  at modellen generaliserer godt. Videoen viser også, hvordan man gemmer en
+  trænet model og genindlæser den til fremtidig brug. Tutoriallen afsluttes med
+  at demonstrere, hvordan man laver forudsigelser ved hjælp af modellen, og
+  validerer dem ved at sammenligne forudsagte værdier med faktiske data.
+  Tf.keras er meget begynder og brugervenligt, og det var hurtigt at få opsat
+  koden til at træne en model med det genererede data, jeg tidligere havde
+  lavet.
+</p>
+<p>
+  Kilde: Deep Learning with Python, TensorFlow, and Keras tutorial -
+  https://www.youtube.com/watch?v=wQ8BIBpya2k&ab_channel=sentdex og How Many
+  Hidden Layers and Neurons does a Neural Network Need -
+  https://www.youtube.com/watch?v=YhatZb5SzE0&ab_channel=MısraTurp
+</p>
