@@ -1,0 +1,39 @@
+---
+layout: post
+title: "Logbog 24 - Gruppemøde & experiment"
+subtitle: "Logbog: Gruppemøde"
+date: 2023-11-14 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi havde i dag et gruppemøde, dog kun med mig og et andet gruppemedlem, siden
+  de andre var forhindret i at deltage. Det andet gruppemedlem der deltog, er
+  det medlem der arbejder med den førnævte sikkerheds proxy, som filtrerer
+  ondsindede trudsler fra anmodninger til serveren. Vi snakkede om hvordan
+  anmodninger/requests fra min SPA til API-gateway’en liggende på serveren, kan
+  gå igennem proxy’en. Gruppemedlemmet har besluttet at ligge proxyen på en
+  Azure server, hvorfra den kan sende anmodninger videre til API-gatway’en. Jeg
+  gav hende addressen til serveren, så vi kunne afprøve om det virkede, ved at
+  sende requests fra postman til gruppemedlemmets proxy, desværre var services
+  på serveren nede, så anmodningerne gik tabt. Dog afprøvede vi det efter
+  gruppemødet, efter at services på serveren var startede, hvor det virkede.
+  Dette vil sige at jeg snart skal ombytte addressen til API-gateway’en til
+  proxy’en i min single page application.
+</p>
+<p>
+  Jeg fortalte at jeg havde fundet et nyt dataset, og selvom det ikke rigtig er
+  den rette timing at begynde på nye projekter, så vil jeg gerne experimentere
+  med at træne en model på dette dataset. Datasettet indeholder både numeriske
+  værdier og billeder relaterende til lækage monitorering. Det er et lidt
+  forkert tidspunkt at begynde på at eksperimentere på nye ting, så sent i
+  semesteret, men jeg tænker at det ikke vil ske noget ved at bruge et par dage
+  på at prøve at træne en model på det. Det er et dataset der indeholder
+  målinger på gasarter fra små sensorer og termiske billeder der representerer
+  lækager. Det er et dataset beregnet til machine learning, som en anden
+  studerende har lavet. Jeg havde selv overvejet at fremstille mine egne
+  billeder til at experimentere med billedgenkendelse til lækager, men så faldt
+  jeg over dette dataset, som allerede gør det. Så i løbet af den næste uge, vil
+  jeg prøve at arbejde en smule med dette data, dog vil jeg også se til mine
+  andre forpligtelser og mål, som jeg også snart skal være færdig med.
+</p>
