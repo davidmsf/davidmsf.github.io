@@ -104,7 +104,14 @@ background: "/img/posts/Screenshot.png"
 </p>
 <p>
   Jeg omdannede koden fra tutoriallen til at bruge det genererede dataset til
-  lækagepunkter, og trænede en model med dette:
+  lækagepunkter, og trænede en model med dette. Som man kan se, kan man oprette
+  en model og tilføje lag til den, ved hvert lag bliver der defineret hvor mange
+  neuroner dette lag skal have, ved at give en nummer som parameter. Input- og
+  outputlagene i modellen indstilles til at have det korrekte antal neuroner ved
+  at anvende .shape attributten på vores data arrays. For inputlaget bruges
+  X_train.shape[1], som refererer til antallet af features (kolonner) i X_train
+  arrayet. For outputlaget bruges y_train.shape[1], som refererer til antallet
+  af outputklasser eller labels i y_train arrayet:
 </p>
 <img src="/img/posts/tfkerasmodelfit.png" style="max-width: 100%" />
 <img src="/img/posts/keraspredict.png" style="max-width: 100%" />
