@@ -88,19 +88,32 @@ background: "/img/posts/Screenshot.png"
   tf.keras. Der bliver vist, hvordan man indlæser, normaliserer dvs. skalerer
   pixelværdierne og deler dataene op i trænings- og testsæt.
 </p>
+<p></p>
 <p>
   Der bliver vist, hvordan man opsætter modellen til at bruge en optimizer,
   Adam, og en loss-function, categorical cross-entropy, ligesom den anden
   opsætning jeg har brugt til træning af den tidligere model. Modellen trænes
   derefter ved hjælp af træningsdata’en. Efter træning vurderes modellens
-  ydeevne ved hjælp af testdata. Dette trin tjekker for overfitting og sikrer,
-  at modellen generaliserer godt. Videoen viser også, hvordan man gemmer en
-  trænet model og genindlæser den til fremtidig brug. Tutoriallen afsluttes med
-  at demonstrere, hvordan man laver forudsigelser ved hjælp af modellen, og
-  validerer dem ved at sammenligne forudsagte værdier med faktiske data.
-  Tf.keras er meget begynder og brugervenligt, og det var hurtigt at få opsat
-  koden til at træne en model med det genererede data, jeg tidligere havde
-  lavet.
+  ydeevne ved hjælp af test/valideringsdata. Dette trin tjekker for overfitting
+  og sikrer, at modellen generaliserer godt. Spørgsmålet er ofte om modellen har
+  overfitted, og håbet er at modellen har generaliseret, hvor den har lært de
+  overordnede møstre, i stedet for blot at lære alle samples modellen er trænet
+  på udenad. Efter man har trænet modellen evaluerer man ofte modellen med
+  valideringsdata, som man har taget fra datasættet, før man trænede den. Man
+  vil gerne have validerings-loss og accuracy udregnet, for at se hvor godt
+  modellen har lært mønstrene i dataen. Man skal forvente at accuracy ved
+  out-of-sample data, altså data modellen ikke er trænet på, er lidt mindre end
+  accuracy ved træning, og at loss er lidt højere. Dog hvis accuracy og loss ved
+  validering, er for langt væk fra ens evaluering ved træning af modellen, kan
+  det betyde at modellen har overfitted.
+</p>
+<p>
+  Videoen viser også, hvordan man gemmer en trænet model og genindlæser den til
+  fremtidig brug. Tutoriallen afsluttes med at demonstrere, hvordan man laver
+  forudsigelser ved hjælp af modellen, og validerer dem ved at sammenligne
+  forudsagte værdier med faktiske data. Tf.keras er meget begynder og
+  brugervenligt, og det var hurtigt at få opsat koden til at træne en model med
+  det genererede data, jeg tidligere havde lavet.
 </p>
 <p>
   Jeg omdannede koden fra tutoriallen til at bruge det genererede dataset til
