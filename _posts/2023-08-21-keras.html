@@ -103,9 +103,10 @@ background: "/img/posts/Screenshot.png"
   vil gerne have validerings-loss og accuracy udregnet, for at se hvor godt
   modellen har lært mønstrene i dataen. Man skal forvente at accuracy ved
   out-of-sample data, altså data modellen ikke er trænet på, er lidt mindre end
-  accuracy ved træning, og at loss er lidt højere. Dog hvis accuracy og loss ved
-  validering, er for langt væk fra ens evaluering ved træning af modellen, kan
-  det betyde at modellen har overfitted.
+  accuracy ved træning, og at loss er lidt højere. Dog hvis accuracy og/eller
+  loss ved validering, er for langt væk fra ens evaluering ved træning af
+  modellen, kan det betyde at modellen har overfitted. Så hvis fx accuracy er
+  meget lavere ved validering, indikerer dette ofte at modellen har overfitted.
 </p>
 <p>
   Videoen viser også, hvordan man gemmer en trænet model og genindlæser den til
