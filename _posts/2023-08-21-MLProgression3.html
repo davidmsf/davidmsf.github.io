@@ -1,0 +1,31 @@
+---
+layout: post
+title: "ML Progression (uge 46)"
+subtitle: "Udviklingen af ML valgfaget"
+date: 2023-11-16 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  Jeg har nu trænet et neuralt netværk på termiske billeder til at forudse
+  lækager. Jeg har igen brugt tensorflow keras til at træne netværket. Jeg fandt
+  et datasæt på nettet, der matcher det emne jeg arbejder med i machine
+  learning, som omhandler lækage testing. Det er lidt sent at begynde at
+  eksperimentere med et nyt datasæt, men jeg føler også, at det ville være lidt
+  ærgeligt at kun arbejde med et dataset, som jeg selv har genereret. Datasettet
+  indeholder termiske billeder, altså billeder der viser temperatur. Udover
+  dette indeholder det også numerisk data, som er målinger fra sensorer der
+  aflæser variationer i den omkringliggende luft. Hvis jeg har mere tid vil jeg
+  også gerne arbejde med dette, men lige nu ligger det ikke som den højeste
+  prioritet. Jeg brugte igen tensorflow keras, fordi det er hurtigt og nemt at
+  træne en model med dette machine learning bibliotek. Med hjælp fra den
+  tidligere tutorial, som jeg havde set omkring træning af netværk, og søgning
+  på nettet, fandt jeg ud af at træne et nætværk på to klasser af termiske
+  billeder. Jeg besluttede mig for at lave binær klassifikation denne gang, så
+  den klassificerer billederne på om der er en lækage eller ej. Teknisk set
+  giver den en sandsynlighed for at billedet tilhører kategorien med eller uden
+  lækager, og hvis sandsynligheden, fra 0 til 1, når over en terskel på 0.5, så
+  bliver der sagt at der ikke er en lækage på billedet. Billederne blev som
+  sædvanlig splittet op i trænings og validerings data.
+</p>
+<p>Der kommer mere tekst senere...</p>
