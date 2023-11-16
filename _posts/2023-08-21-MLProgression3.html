@@ -7,25 +7,82 @@ background: "/img/posts/Screenshot.png"
 ---
 
 <p>
-  Jeg har nu trænet et neuralt netværk på termiske billeder til at forudse
-  lækager. Jeg har igen brugt tensorflow keras til at træne netværket. Jeg fandt
-  et datasæt på nettet, der matcher det emne jeg arbejder med i machine
-  learning, som omhandler lækage testing. Det er lidt sent at begynde at
+  Jeg har nu trænet et neuralt netværk på termiske billeder til at forudsige
+  lækager. Jeg har igen brugt TensorFlow Keras til at træne netværket. Jeg fandt
+  et datasæt på nettet, der matcher det emne, jeg arbejder med i machine
+  learning, som omhandler lækagetesting. Det er lidt sent at begynde at
   eksperimentere med et nyt datasæt, men jeg føler også, at det ville være lidt
-  ærgeligt at kun arbejde med et dataset, som jeg selv har genereret. Datasettet
-  indeholder termiske billeder, altså billeder der viser temperatur. Udover
-  dette indeholder det også numerisk data, som er målinger fra sensorer der
-  aflæser variationer i den omkringliggende luft. Hvis jeg har mere tid vil jeg
-  også gerne arbejde med dette, men lige nu ligger det ikke som den højeste
-  prioritet. Jeg brugte igen tensorflow keras, fordi det er hurtigt og nemt at
-  træne en model med dette machine learning bibliotek. Med hjælp fra den
-  tidligere tutorial, som jeg havde set omkring træning af netværk, og søgning
-  på nettet, fandt jeg ud af at træne et nætværk på to klasser af termiske
-  billeder. Jeg besluttede mig for at lave binær klassifikation denne gang, så
-  den klassificerer billederne på om der er en lækage eller ej. Teknisk set
-  giver den en sandsynlighed for at billedet tilhører kategorien med eller uden
-  lækager, og hvis sandsynligheden, fra 0 til 1, når over en terskel på 0.5, så
-  bliver der sagt at der ikke er en lækage på billedet. Billederne blev som
-  sædvanlig splittet op i trænings og validerings data.
+  ærgeligt kun at arbejde med et datasæt, som jeg selv har genereret. Datasættet
+  indeholder termiske billeder, altså billeder, der viser temperatur. Udover
+  dette indeholder det også numeriske data, som er målinger fra sensorer, det
+  bliver i dokumentationen til datasættet kaldt for en E-nose, der aflæser
+  variationer i den omkringliggende luft. Hvis jeg har mere tid, vil jeg også
+  gerne arbejde med dette, men lige nu ligger det ikke som den højeste
+  prioritet.
 </p>
-<p>Der kommer mere tekst senere...</p>
+<img src="/img/posts/thermalimgdatapaper.png" style="max-width: 100%" />
+<p>
+  Datasættet er blevet lavet af, hvad jeg formoder er
+  universitets-/college-ingeniørstuderende, så det er ikke data fra et
+  professionelt lækagedetekteringsvirksomhed, men det er stadig godt nok for mig
+  at bruge som et "proof of concept". Jeg ved, at nogle
+  lækagedetekteringsvirksomheder tager termiske billeder til at detektere læk.
+  Jeg overvejede selv at lave et datasæt lignende dette, jeg fandt på nettet, og
+  det var faktisk, mens jeg undersøgte at lave mit eget datasæt, at jeg fandt
+  dette.
+</p>
+<p>
+  Jeg brugte igen TensorFlow Keras, fordi det er hurtigt og nemt at træne en
+  model med dette machine learning-bibliotek. Med hjælp fra den tidligere
+  tutorial, som jeg havde set omkring træning af netværk, og søgning på nettet,
+  fandt jeg ud af at træne et netværk på to klasser af termiske billeder. Jeg
+  besluttede mig for at lave binær klassifikation denne gang, så den
+  klassificerer billederne på, om der er en lækage eller ej. Teknisk set giver
+  den en sandsynlighed for, at billedet tilhører kategorien med eller uden
+  lækager, og hvis sandsynligheden, fra 0 til 1, når over en tærskel på 0.5, så
+  bliver der sagt, at der ikke er en lækage på billedet. Billederne blev som
+  sædvanlig opdelt i trænings- og valideringsdata. Jeg valgte at bruge to
+  kategorier eller klasser af termiske billeder: no gas, eller som jeg kalder
+  det “no leak”, og mixture, hvilket er en blanding af parfume og røg. Grunden
+  til, at jeg ikke valgte at tage de to andre separate kategorier med, var,
+  fordi de mindede meget om no leak-kategorien, og at jeg var bange for, at det
+  ville være meget svært at få akkurate forudsigelser med disse kategorier.
+</p>
+<p>
+  Jeg har lavet en API i Python-frameworket Flask, hvor jeg har lavet to
+  endpoints: ét til forudsigelse af, hvilket lækagepunkt en lækage forekommer
+  ved, og ét til forudsigelse af, om der er en lækage, ud fra de termiske
+  billeder. Hvert endpoint kører en Python-klasse, hvor forudsigelsen bliver
+  beregnet ud fra de trænede modeller. Så når Flask API-applikationen bliver
+  kørt, bliver der lavet en instans af hver klasse, hvor modellerne bliver
+  loaded gennem et bibliotek, der hedder pickle. Man kan så sende, igennem for
+  eksempel Postman, en anmodning/request med de værdier, modellen skal forudsige
+  ud fra, til en bestemt URL til API’ens endpoint. Herefter bliver der kaldt en
+  "predict"-metode ved hvert endpoint. Hver predict-metode får det medsendte
+  data og laver en forudsigelse ud fra dette. Der bliver derefter sendt en
+  respons med forudsigelsen tilbage.
+</p>
+<p>
+  Planen indtil videre er at containerisere denne API som et Docker-image og
+  derefter lægge den op på serveren, så der fra SPA'en kan sendes anmodninger
+  til den. Dette er noget, jeg tænker på at lave i løbet af de næste par dage,
+  og jeg håber ikke, det tager for lang tid at gøre, da jeg netop ikke har
+  særlig meget erfaring med Docker og containerisering. Planen er at have en
+  separat side i SPA'en, hvor man kan sende anmodninger til Flask API'en og få
+  forudsigelser vist på siden. Jeg tænker, at til forudsigelser af, hvilket
+  lækagepunkt der har en lækage, at lave en HTML-form, hvor man kan indtaste og
+  justere værdier, og derved få forudsigelser vist ud fra dette. Til
+  forudsigelser af termiske billeder tænker jeg at vise nogle af billederne fra
+  valideringsættet, og at brugeren så kan klikke på dem, og så bliver der sendt
+  en anmodning med billedet til API'en, så der kan blive vist en forudsigelse
+  om, der er en lækage på dette billede. Forskellen på et helt ubrugt billede og
+  et valideringsbillede i denne kontekst er minimal, da begge typer af data
+  repræsenterer nye tilfælde, som modellen skal forudsige på.
+</p>
+<p>
+  Men det ville selvfølgelig være rart at teste med nogle nye og anderledes
+  billeder, selvom valideringsdatasættet giver en god indikation af modellens
+  generelle præstation, ville det være godt at teste modellen på helt nye data
+  for at få en endnu mere realistisk forståelse af dens kapaciteter og
+  begrænsninger i praksis.
+</p>
