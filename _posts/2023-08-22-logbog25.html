@@ -1,0 +1,97 @@
+---
+layout: post
+title: "Logbog 25 - Gruppe- og Nolekmøde plus udvikling og implementering af ML API i en React Applikation"
+subtitle: "Logbog: Gruppe- og Nolekmøde plus planer"
+date: 2023-11-17 4:45:13 -0400
+background: "/img/posts/journal2.avif"
+---
+
+<p>
+  Vi havde i dag, som vi har haft de sidste mange fredage, et gruppemøde
+  efterfulgt af et møde med Nolek. Jeg fortalte til gruppemødet, at jeg havde
+  lavet en API til machine learning-modellerne. Vi snakkede om, jeg og det
+  gruppemedlem, der har Docker som valgfag, hvor denne API skal ligge i relation
+  til de andre moduler på serveren, såsom API-gateway og microservices. Vi
+  aftalte, at vi ikke havde tid til, at anmodninger til denne API går igennem
+  API-gatewayen og microservices. Vi aftalte, at anmodningen fra klienten skal
+  gå direkte til denne API til ML-modellerne. Gruppemedlemmet fortalte, at han
+  havde lavet en såkaldt “swarm”, der håndterer instanser af Docker-billederne.
+  Jeg aftalte med gruppemedlemmet, at hvis jeg laver et Docker-billede til denne
+  API, vil han så lægge den ind i denne "swarm". Så vidt jeg har forstået fra
+  det andet gruppemedlem, kan der i en Docker Swarm oprettes flere instanser af
+  Docker-containere baseret på belastningen. Dette sikrer, at applikationer kan
+  skaleres op eller ned efter behov for at håndtere varierende
+  arbejdsbelastninger, hvilket forbedrer ydeevnen og tilgængeligheden.
+</p>
+<p>
+  Ved mødet med Nolek fortalte vi, hvad vi havde lavet i ugens løb. Jeg fortalte
+  om denne Flask API, og at jeg havde trænet et neuralt netværk til at forudse,
+  om der er en lækage ud fra termiske billeder. Jeg forklarede om strukturen på
+  API’en, omkring hvordan der fra klienten bliver lavet requests til et bestemt
+  endpoint i API’en, med JSON data i requestens body, afhængigt af hvad der skal
+  forudses. Ved hvert endpoint bliver der kaldt en predict-metode, der tilhører
+  en instans af en klasse, der tager sig af forudsigelsen, fra machine
+  learning-modellen. Dataen fra anmodningen bliver passeret til metoden, hvor
+  den faktiske forudsigelse bliver lavet, hvorefter forudsigelsen bliver
+  returneret til klienten.
+</p>
+<img src="/img/posts/apidiagram.png" style="max-width: 100%" />
+<img src="/img/posts/apiendpoints.png" style="max-width: 100%" />
+<p>
+  Jeg viste Nolek, at man kan sende anmodninger til API’en med programmet
+  Postman. Jeg viste, at man kan sende et JSON-objekt med en POST request til
+  API’en for at få en forudsigelse omkring, hvilket lækagepunkt modellen
+  forventer at der kommer en lækage på, ud fra mønstrene i dataen. Jeg viste
+  også, at man kan sende et billede til API’en, hvorfra der også bliver lavet en
+  forudsigelse. Efter mødet har jeg arbejdet med at lave API’en til et
+  Docker-billede.
+</p>
+<img src="/img/posts/sniffpointapicall.png" style="max-width: 100%" />
+<img src="/img/posts/apiimagecall.png" style="max-width: 100%" />
+<p>
+  Jeg forklarede, at planen er, at jeg laver en side i React
+  single-page-applikationen, hvor brugeren kan teste machine
+  learning-modellerne. Med hensyn til forudsigelse af lækagepunkter, er idéen,
+  at brugeren kan ændre i nogle værdier i en HTML-form, hvorefter disse værdier
+  bliver sendt til API’en, og der bliver vist en forudsigelse til brugeren. Til
+  forudsigelse af, om et termisk billede viser en lækage, tænker jeg, at
+  brugeren bliver vist en række forskellige termiske billeder, hvor brugeren så
+  kan klikke på en knap under billedet for at få en forudsigelse vist. Jeg har
+  lavet en wireframe, hvor jeg har overvejet, hvordan siden skal se ud:
+</p>
+<img src="/img/posts/wireframemlsite.png" style="max-width: 100%" />
+<p>
+  Jeg tænker at bruge et React-bibliotek såsom “React Router” eller “Reach
+  Router” til at route til siden, hvor man kan foretage ML-forudsigelser.
+  Routing i en React webapp handler om at håndtere, hvordan brugere navigerer
+  mellem forskellige sektioner eller "sider" i din applikation. Dette gøres
+  normalt ved at skifte komponenter ud, der vises på skærmen, uden at indlæse en
+  helt ny side fra serveren. Det gør det nemmere at strukturere og vedligeholde
+  større apps, og det er også en fordel til søgemaskineoptimering. Brugen af
+  routing i en React-applikation medfører betydelige fordele i form af
+  håndtering af URL'er og muligheden for at skabe dynamiske links.
+</p>
+<p>
+  Med routing kan hver sektion eller side i din applikation have sin egen unikke
+  URL. Dette gør det nemmere for brugerne at forstå, hvor de er i applikationen,
+  og gør det muligt at bruge browserens navigationsfunktioner, såsom frem og
+  tilbage knapper. Routing gør det muligt at oprette links, der dynamisk kan
+  ændre visningen eller tilstanden af applikationen.
+</p>
+<p>
+  Jeg har indtil videre ikke brugt routing. Applikationen fungerer ved at vise
+  modal-dialogvinduer og bytte indhold dynamisk inden for enkelte
+  React-komponenter. Denne tilgang har indtil nu været tilstrækkelig til at
+  håndtere appens funktionalitet, uden behovet for traditionel sidebaseret
+  navigation. For som siden er nu, er det næsten som en form for “dashboard”,
+  hvor man kan oprette og redigere testobjekter og testresultater for
+  lækagepunkter.
+</p>
+<p>
+  I applikationens nuværende tilstand bliver brugerinteraktioner, såsom at
+  anmode om forskelligt indhold, håndteret ved hjælp af Reacts
+  tilstandshåndtering, ved hjælp af useState og useEffect, som jeg har skrevet
+  om tidligere. Men til større sider er det næsten uundgåeligt at ikke bruge
+  routing, og derfor tænker jeg, at det ville være en god idé at stifte
+  bekendtskab med det.
+</p>
