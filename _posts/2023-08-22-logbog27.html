@@ -1,0 +1,42 @@
+---
+layout: post
+title: "Logbog 27 - gruppemøde og progression med projektet"
+subtitle: "Logbog: Gruppemøde"
+date: 2023-11-22 4:45:13 -0400
+background: "/img/posts/logbog.png"
+---
+
+<p>
+  Vi havde gruppemøde i dag. Gruppemedlemmet, der står for at lave en
+  sikkerhedsproxy, som skal finde sikkerhedstrusler i anmodningerne, havde gjort
+  det andet gruppemedlems kode, med API-gateway og mikroservices med databaser,
+  klar til at modtage kald fra proxyen. API-gatewayen var blevet lavet til et
+  nyt Docker-billede, som de fik lagt op på serveren. Proxyen har en 'privat og
+  offentlig nøgle'. Den signerer så anmodningen med sin private nøgle, og
+  anmodningen samt proxyens offentlige nøgle bliver sendt til API-gatewayen. Når
+  API-gatewayen modtager anmodningen, bruger den proxyens offentlige nøgle til
+  at verificere signaturen. Hvis signaturen kan verificeres med den offentlige
+  nøgle, betyder det, at anmodningen utvivlsomt er kommet fra proxyen og ikke er
+  blevet ændret undervejs. Men jeg må indrømme, at jeg ikke har fordybet mig i
+  dette område, så min forståelse er på et meget grundlæggende niveau, og består
+  kun af det jeg er blevet fortalt af de andre gruppemedlemmer...
+</p>
+<p>
+  Jeg snakkede også med gruppen om at få min Flask API til machine learning lagt
+  op på serveren. Jeg havde lidt problemer med at bygge API'en til et
+  Docker-billede, mere specifikt var det nogle afhængigheder til API'en, som
+  manglede og var den forkerte version af. Dog fik jeg rettet dette og fik den
+  bygget til et Docker-billede. Derefter lagde jeg Docker-billedet op på Docker
+  Hub, hvor jeg havde lavet et repository til det. Det andet gruppemedlem
+  hentede det ned på serveren og fik det lagt sammen i den Docker Swarm, som
+  gruppemedlemmet havde lavet. Der var nogle problemer med at forbinde til
+  API'en, da vi prøvede at teste den. Lidt efter mødet gik det op for os, at der
+  var blevet konfigureret den forkerte port til API'en, hvorefter det blev
+  rettet, og vi kunne tilgå den fra applikationen Postman og få forudsigelser
+  fra den. Dog er der stadig lidt problemer med at lave requests til API'en fra
+  React-siden, der kører i browseren. Det er det samme problem som tidligere med
+  den anden API-gateway, hvor der kommer en CORS-headerfejl. Jeg er i øjeblikket
+  i gang med at finde ud af, hvordan dette kan afhjælpes. Jeg skal også til at
+  prøve at lægge React-webapplikationen op på serveren, dog er serveren nede
+  pga. vedligeholdelse.
+</p>
