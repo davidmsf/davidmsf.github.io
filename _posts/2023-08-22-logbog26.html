@@ -1,0 +1,61 @@
+---
+layout: post
+title: "Logbog 26 - Progression med projektet"
+subtitle: "Logbog"
+date: 2023-11-21 4:45:13 -0400
+background: "/img/posts/logbog.png"
+---
+
+<p>
+  Jeg har de sidste par dage arbejdet på den førnævnte ML side i React, som står
+  for at præsentere det, jeg har lavet i mit machine learning-valgfag. Jeg
+  brugte React-biblioteket 'React Router' til at route til machine
+  learning-siden. Dette var ganske ligetil, da det blot, indtil videre, er en
+  statisk URL. Dog kan det være, at jeg senere hen, hvis jeg har tid til det,
+  gerne vil prøve at opsætte routing til at have parametre i URL'en, som kan
+  bruges til en af forudsigelserne for machine learning-modellerne. Dette kunne
+  for eksempel være temperatur, tryk, og alder osv.
+</p>
+<p>
+  Jeg havde et wireframe, at gå ud fra, til hvordan brugergrænsefladen skal se
+  ud på siden, hvilket jeg benyttede mig af:
+</p>
+<img src="/img/posts/wireframemlsite.png" style="max-width: 100%" />
+
+<p>Som man kan se kom siden også til at ligne dette wireframe en del:</p>
+<img src="/img/posts/mlpage.png" style="max-width: 100%" />
+<p>
+  Dog mangler den højst sandsynligt at blive stylet noget mere med CSS, men
+  dette er ikke en høj prioritet i øjeblikket. Hver gang der bliver foretaget en
+  ændring ved enten 'HTML sliders' eller HTML-dropdown, bliver der efter et par
+  sekunder lavet en request til API'en med JSON i dens body. Der bliver så vist
+  den respons fra API'en, som består af machine learning-modellens forudsigelse.
+  På samme måde bliver der lavet en forudsigelse med de termiske billeder, når
+  brugeren trykker 'predict'.
+</p>
+<p>
+  Der var også nogle fejl på siden, som jeg har kigget meget på, hvorefter det
+  gik op for mig, at det faktisk var en af mikroservicerne til API-gatewayen,
+  der gemmer testobjekterne, fejlen lå ved. Fejlen var, at man ikke kunne
+  tilføje nye lækagepunkter til et testobjekt, når man ville redigere i et
+  allerede oprettet et. Jeg har derfor været inde og ændre på, hvordan
+  testobjektet gemmer nye lækagepunkter, men jeg har indtil videre ikke testet
+  det, da det skal opdateres på selve serveren, hvilket jeg regner med sker i
+  morgen. Jeg er efterhånden nået til det punkt, hvor det jeg har udviklet, skal
+  lægges op på serveren. Dette hænger også sammen med, at jeg så kan præsentere
+  det for vores product owner, Nolek, på fredag. Jeg er endnu ikke sikker på, om
+  jeg skal lægge både Flask API og React webapplikationen op som
+  Docker-billeder, eller om det kun skal være API'en. Det kan godt være, at det
+  er hurtigere at lægge webapplikationen direkte op, uden at lave det til et
+  Docker-billede.
+</p>
+
+<p>
+  Jeg har i dag været i gang med at lave API'en til et Docker-billede, efter jeg
+  har lavet nogle ændringer i den, dog har der været nogle problemer med det,
+  men regner med at få det løst i løbet af i dag eller i morgen. Ved sådan et
+  Python-projekt bliver man nødt til at lave en 'requirements.txt'-fil, hvor man
+  skriver hvilke afhængigheder, i form af biblioteker, projektet skal bruge for
+  at kunne bygges. Når man laver et Docker-billede, laver man en Docker-fil med
+  anvisninger til, hvordan billedet skal bygges.
+</p>
