@@ -1,0 +1,108 @@
+---
+layout: post
+title: "Custom Hooks"
+subtitle: "SPA: React design pattern"
+date: 2023-11-29 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Som del af den videoserie jeg har fulgt omkring design patterns i React, er
+  jeg kommet til emnet custom hooks. Custom hooks er genbrugelige funktioner,
+  der står for at håndtere sidens data og opførsel, der kan bruges på tværs af
+  webapplikationen.
+</p>
+
+<p>
+  Denne tilgang kan i nogle tilfælde gøre det nemmere at hente og håndtere data,
+  og gør koden mere vedligeholdelsesvenlig og skalerbar. Der bliver vist
+  eksempler, såsom at indlæse brugerdata eller produkter fra en server, og
+  hvordan disse mønstre er brugbare indenfor udvikling af React
+  webapplikationer.
+</p>
+<p>
+  I videoen bliver der for eksempel lavet en custom hook kaldet
+  ‘useCurrentUser’, for at demostrere hvad et custom hook kunne gøre. Alle
+  custom hooks skal starte med ‘use’. Dette hook henter oplysninger om den
+  bruger, der er logget ind, fra en server, som eksempel. Det bruger Reacts
+  useState og useEffect hooks. Hooket henter brugerdata ved hjælp af Axios, et
+  React bibliotek jeg også selv bruger, og opdaterer komponentens tilstand. Det
+  er specifikt designet til komponenter, der skal vise data om den aktuelle
+  bruger. Den primære begrænsning af useCurrentUser er dets specifikke
+  anvendelse. Den er kun lavet til en specifik request. Den fungerer ved at
+  funktionen bliver kørt hver gang komponentet bliver mounted, vha. et tomt
+  array som argument til useEffect. Brugeren bliver sat som en useState. Når
+  brugeren er blevet hentet ved en get request, bliver brugeren returneret. Dog
+  skal det påpeges at denne videoserie bruger javascript og ikke typescript, som
+  jeg bruger i mit projekt.
+</p>
+<img src="/img/posts/customhook1.png" style="max-width: 100%" />
+<p>Dette er hvordan dette custom hook bliver brugt:</p>
+<img src="/img/posts/customhook1part2.png" style="max-width: 100%" />
+<p>
+  Derefter bliver der vist, hvordan man laver en videreudvikling af dette
+  komponent kaldt useUser. Det kan hente data om hvilken som helst bruger. Det
+  er mere fleksibelt end useCurrentUser, da det accepterer et bruger id som
+  argument, hvilket gør det genanvendeligt på tværs af forskellige komponenter
+  for forskellige brugere. Ligesom useCurrentUser, bruger det useState,
+  useEffect og Axios, men med den ekstra funktionalitet at dynamisk hente data
+  baseret på bruger id, hver gang id'et forandre sig ved useEffect.
+</p>
+<img src="/img/posts/customhook2.png" style="max-width: 100%" />
+<p>Dette er hvordan dette custom hook bliver brugt:</p>
+<img src="/img/posts/customhook2part2.png" style="max-width: 100%" />
+<p>
+  Derefter bliver der skabt et hook kaldet useResource, som kan bruges til at
+  indlæse enhver ressource fra serveren/API. Dette hook er det mest fleksible af
+  de tre hooks, der er blevet nævnt indtil videre, da det kan bruges til at
+  indlæse enhver type ressource. Dette hook er en yderligere generalisering, som
+  gør det muligt at indlæse enhver type ressource fra api/serveren, ikke
+  begrænset til en bestemt URL, ved at gøre selve URL’en til et argument til
+  funktionen.
+</p>
+<img src="/img/posts/customhook3.png" style="max-width: 100%" />
+<p>Dette er hvordan dette custom hook bliver brugt:</p>
+<img src="/img/posts/customhook3part2.png" style="max-width: 100%" />
+<p>
+  Der blev vist hvordan man kan refactor eller videreudvikler useResource, til
+  at hedde useDataSource, hvor denne custom hook bliver endnu mere
+  generaliseret. useDataSource bliver tilpasset til et højere niveau, hvor
+  enhver datakilde, ikke kun serverbaserede ressourcer, kan bruges. Dette hook
+  accepterer en funktion som argument, som definerer, hvordan man henter
+  dataene. Denne funktion kunne tilpasses til at hente data fra forskellige
+  kilder, som en server eller lokal lagring. Dette gør den endnu mere fleksibel,
+  hvor man kan konfigurere hvorfra og hvordan data skal hentes.
+</p>
+<img src="/img/posts/customhook4.png" style="max-width: 100%" />
+<p>Dette er hvordan dette custom hook bliver brugt:</p>
+<img src="/img/posts/customhook4part2.png" style="max-width: 100%" />
+<p>
+  En af fordelene ved custom hooks, er at det hjælper med at forbedre genbrug af
+  kode. De kan også gøre din kode mere læsbar og vedligeholdelsesvenlig ved at
+  adskille tilstandsbaseret logik fra præsentationslogik. Dog er det ikke altid
+  lige nemt at adskille dette.
+</p>
+<p>
+  Jeg har også selv prøvet at implementere dette mønster, mere specifikt
+  useResource, til at hente data fra API’en. Dog skulle jeg lave nogle få ting
+  om, fordi jeg netop skriver koden i TypeScript og ikke JavaScript, hvilket
+  kræver type annotation, hvilket gør at jeg skal definere datatyper jeg bruger.
+  Som jeg nok har nævnt før, er TypeScript et statisk typet sprog, hvilket
+  betyder, at typerne af variabler og funktioner er kendt ved kompileringstid, i
+  modsætning til dynamisk typede sprog som JavaScript, hvor typerne bestemmes
+  ved kørselstid. Dette kaldes for "static typing”.
+</p>
+<img src="/img/posts/useResource.png" style="max-width: 100%" />
+<p>Dette er hvordan denne custom hook bliver brugt:</p>
+<img src="/img/posts/useResourcepart2.png" style="max-width: 100%" />
+<p>
+  Som man kan se på billedet, så bruger jeg en generisk datatype, som er skrevet
+  som et stort T. I TypeScript betyder et stort T, at du definerer en generisk
+  type, som kan være hvad som helst. Det er i stedet for en fremtidig type, der
+  vil blive specificeret, når funktionen kaldes. Det sikrer, at funktionen kan
+  arbejde med forskellige datatyper.
+</p>
+<p>
+  Kilde: Custom Hooks | React Design Pattern - 5 -
+  https://www.youtube.com/watch?v=6_WS8ApFZGE&list=PLgeETUaEEds5HE2uGWezJxYeZwpBonHr-&index=4&ab_channel=CodingWithMr.M
+</p>
