@@ -1,0 +1,195 @@
+---
+layout: post
+title: "The spelled-out intro to neural networks and backpropagation: building micrograd"
+subtitle: "Omhandlende en tutorial med en trin-for-trin forklaring af backpropagation og træning af neurale netværk. Det forudsætter kun grundlæggende kendskab til Python og en vag erindring om kalkulus."
+date: 2023-12-7 4:45:13 -0400
+background: "/img/posts/Screenshot.png"
+---
+
+<p>
+  Jeg har set en tutorial fra Andrej Karpathy på youtube omhandlende neurale
+  netværk heriblandt backpropagation. Andrej Karpathy er kendt for at have
+  arbejdet med dybe neurale netværk i lang tid, og arbejder blandt andet på
+  selvkørende biler hos Tesla. I tutorialen bliver der demonstreret hvordan man
+  træner et neuralt netværk. Foredraget starter med en blank Jupyter-notebog og
+  ender med et trænet neuralt netværk, for at få en intuitiv forståelse af disse
+  koncepter. Andre fokuserer på "micrograd," et bibliotek han har udgivet på
+  GitHub, som implementerer et neuralt netværk.
+</p>
+<p>
+  Der bliver forklaret, at neurale netværk i essensen er matematiske
+  regnestykker. Den metode man bruger til at forbedre en model, er kaldet
+  backpropagation, og er essentielt for at træne neurale netværk. Selvom
+  micrograd kun består af 100 linjer kode og er et mindre bibliotek for neurale
+  netværk, dækker det de grundlæggende behov for at træne neurale netværk.
+  Biblioteket arbejder med tal (skalarer) og gør det lettere at forstå, hvordan
+  neurale netværk fungerer, i modsætning til de mere komplekse biblioteker, der
+  bruges til deep learning.
+</p>
+<p>
+  Først bliver der diskuteret differentialregning ved en simpel funktion med ét
+  input og hvordan det implementeres i micrograd. Det er vigtigt at intuitivt
+  forstå konceptet af differentialkvotienter. Dette bliver demonstreret ved at
+  definere en funktion og plotte den for at vise dens form, og derefter
+  diskutere konceptet af en differentialkvotient i sammenhæng med denne
+  funktion.
+</p>
+<img src="/img/posts/microgradsimplefunc.png" style="max-width: 100%" />
+<img src="/img/posts/microgradoneimputderivative.png" style="max-width: 100%" />
+<p>
+  Når man differentierer finder man hvordan funktionen ændrer sig, ved en meget
+  lille ændring i indputtet, det kan være at den stiger eller falder, og man kan
+  tænke på det som hvordan hældningen til tangenten til funktionen er på et
+  bestemt punkt. For at illustrere dette bliver der brugt en manuel numerisk
+  tilgang, hvor der bliver valgt en lille forøgelse til funktionen og man så ser
+  ændringen i funktionens output ved et specifikt input. Man finder derved
+  hældningen eller ændringshastigheden ved det punkt.
+</p>
+<p>
+  Overordnet giver det en intuitiv forståelse af differentialregning i
+  konteksten af en simpel funktion med et indput, hvilket lægger fundamentet for
+  mere komplekse anvendelser af differentialregning ved træning af neurale
+  netværk. Jeg selvfølgelig lært om dette før, men det er altid en godt at få
+  opfrisket ens forståelse.
+</p>
+<p>
+  Der bliver gået videre med eksemplet af afledning af en funktion med et enkelt
+  input, til en funktion med flere input. Der bliver vist et eksempel med tre
+  numre, som indputs til funktionen og et enkelt output. Målet er at forstå
+  differentialkvotienten af outputtet i forhold til hvert input. Der bliver
+  ændret et input ad gangen med en lille mængde h, for at observere, hvordan
+  outputtet ændres. Outputtet divideret med den lille mængde h, giver stigning
+  over løb, eller rise over run, dvs. hældningen eller differentialkvotienten af
+  outputtet i forhold til det specifikke input.
+</p>
+<img
+  src="/img/posts/manualderivativemultipleinputs.png"
+  style="max-width: 100%"
+/>
+<p>
+  Dette giver en forståelse af, hvordan en lille ændring ved et bestemt input
+  påvirker outputtet, hvilket lægger grundlaget for at forstå neurale netværk,
+  hvor lignende principper gælder, men i et mere komplekst scenarie med mange
+  flere inputs og interaktioner.
+</p>
+<p>
+  Der bliver introduceret et Value objekt i micrograd, dette er et basalt
+  værktøj til at spore simple matematiske operationer, såsom at plusse og gange.
+  Dette objekt i micrograd bliver brugt i processent til at bygge et neuralt
+  netværk. Dette Value objekt er brugbart i backpropagation, hvor hvert objekt
+  har en gradient, som indikerer hvor meget denne værdi i Value objektet, har
+  indflydelse på det sidste resultat, når den bliver ændret. Til at starte med
+  er denne værdi nul, dvs. at den ikke har nogen indflydelse på det endelige
+  resultat. I backpropagation bliver disse gradients udregnet, kaldet “grad” i
+  denne kontekst, ved at gå baglens fra det sidste resultat. Man får disse
+  gradienter, ved at differentiere slut resultatet med respekt til den enkelte
+  parameter eller værdi i dette tilfælde. Når man har udregnet disse gradients
+  kan man ændre på vægtene og bias, for at optimere resultatet, så det neurale
+  netværk forudsiger bedre, dvs. loss falder.
+</p>
+
+<p>
+  Man udregner hvordan en lille ændring i vægtene har indflydelse på resultatet,
+  ved at bruge kæde-reglen. Ved kæde-reglen differentiere man slutresultatet med
+  respekt til hver tidligere udregning foretaget i neuronet, og ganger dem
+  sammen, ligesom med det tidligere eksempel med den førnævnte funktion med
+  flere indputs. Der bliver foretaget flere udregninger i hvert neuron, inputs
+  og vægte bliver ganget, og derefter bliver produkterne af disse udregninger
+  lagt sammen, derefter bliver dette produkt lagt sammen med bias, derefter
+  kommer resultatet fra denne udregning gennem en aktiveringsfunktion. Ved
+  backpropagation bliver der gået tilbage den modsatte vej fra
+  aktiveringsfunktion til vægte plus inputs i hvert neuron, hvor
+  differentialkvotienten fra tabet/loss med respekt til de individuelle
+  aktiveringsfunktionen, vægte, inputs og bias, bliver udregnet vha.
+  kæde-reglen. Ud fra disse beregninger, hvor man udregner gradienten, kan
+  vægtene opdateres, så loss falder. Så gradienten af tab/loss-funktionen i
+  forhold til vægtene i et neuralt netværk finjusteres iterativt for at minimere
+  tab og forbedre nøjagtigheden af forudsigelserne af modellen.
+</p>
+<p>
+  Dette bliver vist med en grafisk representation af værdierne og operationerne
+  i neuronet, hvor hvert værdi eller “node”, er afledt fra andre værdier gennem
+  specifikke operationer. I videoen bliver hver node gennemgået, hvor gradienten
+  bliver indstillet baseret på kædereglen, og visuelt bliver disse beregninger
+  verificeret. For eksempel viser han, hvordan en lille ændring af en variabel
+  (med en lille mængde h) påvirker outputtet, og bekræfter, at de beregnede
+  gradienter er korrekte. Ved at manuelt lave backpropagation bliver de
+  grundlæggende koncepter i hvordan neurale netværkt optimiserer og lærer vist.
+  Hovedpointen er at i backpropagation anvendes kædereglen rekursivt gennem et
+  neuralt netværks beregninger, for at forbedre netværkets præstation.
+</p>
+<img src="/img/posts/microgradneuron.png" style="max-width: 100%" />
+<p>
+  Der bliver derefter demonstreret, hvordan man bygger et neuralt netværk i
+  micrograd, der starter med en enkelt neuron, derefter lag med neuroner der til
+  sidst danner et to-lags multilayer perceptron (MLP). Hver neuron beregner en
+  en værdi ud fra vægte, inputs og bias, som så ledes gennem en
+  aktiveringsfunktion. Netværket udvides til et lag af neuroner, hvor hvert
+  neuron evalueres uafhængigt. Netværket oprettes ved at forbinde flere neuroner
+  i lag og tage outputtet fra et lag, og bruge det som input til det næste lag.
+</p>
+<img src="/img/posts/microgradMLP.png" style="max-width: 100%" /><br /><br />
+<img src="/img/posts/nn.png" style="max-width: 100%" />
+<p>
+  Netværket bliver demonstreret ved at lave et simpelt datasæt, og derefter
+  bliver en tab (loss) funktion defineret som mean squared error, hvor man tager
+  forskellem mellem det sande resultat og det forudsagte og tager det i anden
+  eksponent, og bruger denne til at evaluere netværkets præstationer. Ved at
+  anvende backpropagation kan vægte og bias i netværket justeres for at mindske
+  tabet.
+</p>
+<p>
+  Derefter bliver der vist hvordan man samler alle parametre i et neuralt
+  netværk i micrograd. Han viser, hvordan man kan justere dem en smule baseret
+  på gradienten værdi. Parametrene samles i en enkelt liste, der indeholder alle
+  vægte og biases i netværket. Derefter kan gradient descent optimering
+  foretages, hvert parameter justerer lidt efter lidt i henhold til deres
+  gradienter for at reducere tabet (loss).
+</p>
+<p>
+  For at opsummere bliver der lavet en forward pass efterfulgt af en
+  tab/loss-funktion, som måler hvor godt netværket forudsiger, og man stræber
+  efter en lav tabs-værdi. Backpropagation bruges til at få gradienten, som
+  hjælper med at finjustere parametrene for at minimere tabet. Denne proces skal
+  gentages mange gange i en proces kaldet gradient descent. Neurale netværk kan
+  være ekstremt komplekse, med milliarder eller endda billioner af parametre, og
+  at de kan løse meget komplekse problemer. Dette er de grundlæggende koncepter,
+  som alle neurale netværk er bygget på, selvom de anvendte tab-funktioner og
+  opdateringsmetoder kan variere, er grundprincipperne de samme.
+</p>
+<p>
+  Neurale netværk har en bred vifte af anvendelser i den virkelige verden. De
+  anvendes i billedegenkendelse, hvor de kan identificere og klassificere
+  objekter i billeder og videoer, som jeg har stiftet en lille smule bekendskab
+  med. Desuden bruges neurale netværk i spiludvikling og robotteknologi, hvor de
+  kan træffe beslutninger og lære fra interaktioner med omgivelserne. I
+  sprogforståelse anvendes de til at oversætte tekst, genkende tale og endda
+  generere tekst. I det sidste år er large language models (LLM’s), for eksempel
+  som GPT-4, især blevet populære, og er blevet meget omtalt i medierne.
+</p>
+<p>
+  Overordnet er AI i de sidste par år blevet mainstream og er kommet til at
+  fylde i vores fælles bevidsthed, med meget omtale omkring hvordan denne
+  teknologi kommer til at forandre vores verden. Der er både optimistiske og
+  pessimistiske, grænsende til apokalyptiske, holdninger, omkring hvordan AI
+  kommer til at påvirke vores samfund. Der er enighed om at AI kommer til at
+  redde liv i medicinalindustrien, i form af mere sofistikeret diagnosticering.
+  AI som en personlig assistent er allerede et værktøj som flere og flere er
+  begyndt at bruge, både til deres professionelle liv og som en personlig
+  rådgiver, og dette er blot starten, jeg forventer at personaliserede
+  assistenter kommer til at fylde mere i fremtiden. Mulighederne for hvordan AI
+  kan bruges til at løse komplekse problemer er næsten ubegrænsede. Frygten er
+  dog også at denne teknologi, med automatisering af arbejdsprocesser, kommer
+  til at overtage for mange jobs, og derved skabe stor arbejdsløshed. Til sidst
+  er der også den angst, som en andel af både læg og fag-personer deler, at AI
+  kommer til at true vores eksistens, som afhænger mere og mere af teknologi,
+  enten som hjelp til terrorangreb eller som en anden uforventet katastofe. Alle
+  er dog enige om at det er en teknologi, der kommer til at fylde meget over de
+  næste årtier.
+</p>
+
+<p>
+  Kilde: The spelled-out intro to neural networks and backpropagation: building
+  micrograd -
+  https://www.youtube.com/watch?v=VMj-3S1tku0&t=2121s&ab_channel=AndrejKarpathy
+</p>
