@@ -87,7 +87,19 @@ background: "/img/posts/Screenshot.png"
   kan man ændre på vægtene og bias, for at optimere resultatet, så det neurale
   netværk forudsiger bedre, dvs. loss falder.
 </p>
-
+<p>
+  Tab/Loss-functions også kendt som cost or error functions, bruges til at finde
+  fejlen mellem det forudsagte output og den faktiske målværdi. Lineær
+  regression kan bruges til at illustrere dette koncept. Tilpasning af en linje
+  gennem datapunkter involverer at minimere afstanden eller fejlen mellem
+  datapunkterne og den forudsagte linje. Denne proces indebærer beregning af
+  **Mean Squared Error** (MSE), som er gennemsnittet af de kvadrerede forskelle
+  mellem hvert datapunkt og linjen. Dette er en almindelig loss/tabfunktion til
+  regression. Forskellige typer af problemer i maskinlæring bruger forskellige
+  tabfunktioner. I klassifikationsproblemer bruges cross entrophy typisk,
+  hvilket er hvad jeg har brugt til mine problemer. Man kan skelner typisk
+  mellem binær og multi class klassifikation.
+</p>
 <p>
   Man udregner hvordan en lille ændring i vægtene har indflydelse på resultatet,
   ved at bruge kæde-reglen. Ved kæde-reglen differentiere man slutresultatet med
@@ -96,8 +108,25 @@ background: "/img/posts/Screenshot.png"
   flere indputs. Der bliver foretaget flere udregninger i hvert neuron, inputs
   og vægte bliver ganget, og derefter bliver produkterne af disse udregninger
   lagt sammen, derefter bliver dette produkt lagt sammen med bias, derefter
-  kommer resultatet fra denne udregning gennem en aktiveringsfunktion. Ved
-  backpropagation bliver der gået tilbage den modsatte vej fra
+  kommer resultatet fra denne udregning gennem en aktiveringsfunktion.
+</p>
+<p>
+  Aktiveringsfunktionerne i neurale netværk spiller en stor rolle i både de
+  skjulte lag og det sidste lag. Disse funktioner bruges til at afgøre hvordan
+  netværket skal reagere på input og er afgørende for modellens evne til at
+  modellere komplekse mønstre og relationer i data, som ikke er direkte
+  proportionale eller lineære. Det gør det muligt for netværket at lære og
+  forudsige i komplekse situationer. I de skjulte lag hjælper
+  aktiveringsfunktionerne netværket med at bearbejde og forstå komplekse
+  mønstre, mens de i det sidste lag bruges til at give en forudsigelse. For
+  eksempel anvendes en funktion som sigmoid i binære klassifikationsproblemer
+  til at repræsentere sandsynligheder mellem 0 og 1. For multi-class
+  classification, bruges mere avancerede funktioner som softmax i det sidste
+  lag, som gør det muligt at give en sandsynlighedsfordeling over flere klasser,
+  hvilket jeg også har brugt i mit projekt.
+</p>
+<p>
+  Ved backpropagation bliver der gået tilbage den modsatte vej fra
   aktiveringsfunktion til vægte plus inputs i hvert neuron, hvor
   differentialkvotienten fra tabet/loss med respekt til de individuelle
   aktiveringsfunktionen, vægte, inputs og bias, bliver udregnet vha.
