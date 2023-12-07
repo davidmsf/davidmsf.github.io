@@ -49,6 +49,27 @@ background: "/img/posts/Screenshot.png"
   ville være meget svært at få akkurate forudsigelser med disse kategorier.
 </p>
 <p>
+  Jeg bruger data augmentation i keras til at forbedre datasettet ved at tilføje
+  flere billeder til trænings og valideringsdata. Dette er en teknik der ofte
+  bliver brugt i tilfælde som min hvor man har et billede dataset som kunne
+  forbedres ved at tilføje flere, dog er det kun nøttigt hvis man allerede har
+  mere end et par hundrede billeder, ellers kan overfitting nemt opstå. Dette
+  gør at modellen bliver bedre til at generalisere på billederne den bliver
+  trænet på. Man tilføjer flere billeder ved at ændre eller augmentere dem, så
+  de bliver roteret, skubbet i højden og bredden, forvrænget eller fordrejet,
+  zoomet, horizontalt eller vertikalt flippet. Dette bliver gjort med tensorflow
+  Keras ImageDataGenerator. Man kan ved Keras ImageDataGenerator ændre på
+  parametre der styrer hvordan billederne skal forandres/augmenteres.
+</p>
+<img src="/img/posts/imgaugmentation.png" style="max-width: 100%" />
+<br /><br />
+<img src="/img/posts/imagesaugmented.png" style="max-width: 100%" />
+<p>
+  På denne måde skaber jeg varierede versioner af eksisterende billeder. Disse
+  transformationer simulerer forskellige perspektiver og forhold, og bidrager
+  dermed til robustheden af den trænede model.
+</p>
+<p>
   Jeg har lavet en API i Python-frameworket Flask, hvor jeg har lavet to
   endpoints: ét til forudsigelse af, hvilket lækagepunkt en lækage forekommer
   ved, og ét til forudsigelse af, om der er en lækage, ud fra de termiske
