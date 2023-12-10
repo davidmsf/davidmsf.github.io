@@ -1,0 +1,84 @@
+---
+layout: post
+title: "Logbog 31 - Opsummering"
+subtitle: "Logbog: Opsummering af valgfag og projekter."
+date: 2023-12-9 4:45:13 -0400
+background: "/img/posts/logbog.png"
+---
+
+<p>
+  Til single page applications var ikke helt sikker på hvilket framework/bibliotek jeg ville experimentere med. Valget faldt på React med typescript. Jeg fik indtrykket af at React var en smule hurtigere at komme i gang med og hurtigt bygge en dynamisk hjemmeside med. Dog kunne jeg godt forestille mig at jeg også ville have været glad for at bygge webapplikation med Angular, især med den mere strukturerede opdeling af html, css og javascript. Til vidensindsamling til SPA valgfaget, har jeg set mange YouTube toturials, hvor jeg blandt andet har lært om en række grundlæggende koncepter om at bygge en webapplikation i React. Derudover har jeg også lært om nogle mere avancerede concepter omkring design mønstre man kan bruge, til at forbedre kvaliteten af ens kode i React.  
+</p>
+
+<p>
+  Den React webapplikation jeg har lavet bestaår af et “dashboard” hvor man kan oprette testobjekter og registrere lækager, samt en side til at vise hvad jeg har lavet i machine learning valgfaget. Dette er lavet efter vores Product Owner Noleks ønsker, om at få en applikation der kan håndtere registrering af lækager på rørsystemer. Jeg har også samarbejdet med min gruppe om at få min SPA til at hænge sammen med hvad resten af gruppen har arbejdet med i deres valgfag. På et tidspunkt lavede min SPA også anmodninger til de backends som to andre gruppemedlemmer har lavet. Dog var der nogle tekniske problemer, der gjorde at jeg i slutningen af forløbet valgte at lave min egen API til webapplikationen. Vi aftalte i gruppen at når der skal sendes en anmodning fra frontend, så skulle den gå igennem en proxy, der står for at dedektere trudsler, hvorefter denne request bliver sendt videre til en API gateway som så sender anmodningen videre til en microservice der håndterer dette kald, for eksempel at trække noget data ud fra en database.
+</p>
+
+
+<p>
+  Jeg vil kort forklare om hvordan denne SPA i React virker. Når man vil oprette et testobjekt, såsom et rørsystem til et køleskab, vælger man et billede og derefter kan man vælge at klikke lækagepunkter på billedet, som labels med en bestemt position, eller blot tilføje dem uden at sætte dem på billedet. Disse lækagepunkter får som standard deres eget bogstav, men man kan selv bestemme hvad de skal hedde, ved at redigere deres navn. Man kan også slette dem igen. Derefter udfylder man serienummer og type, hvorefter kan man oprette et testobjekt. 
+</p>
+
+<img src="/img/posts/create.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/createchangelabelname.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/createchangeinput.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/createremove.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/createremoveinput.png" style="max-width: 100%" /><br><br>
+
+<p>
+  Hvis der bliver skrevet bogstaver i serienummeret kommer der en påmindelse om at det kun skal indeholde tal, og hvis man ikke har fået udfyldt felterne eller har valgt et billede, bliver man påmindet om at gøre dette.  
+</p>
+<img src="/img/posts/createserialnrvalidation.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/createfilloutforms.png" style="max-width: 100%" /><br><br>
+
+<p>
+  Når man har oprettet et testobjekt bliver dette testobjekt vist, hvor man har oversigt over lækagepunkterne, og om de har en lækage eller ej. Til at starte med er alle lækagepunkter, kaldt sniffingpoints, ok, dvs. ingen lækage. De har heller ikke nogen begrundelse. Man kan toggle at der er en lækage, når man gør det bliver der åbnet et vindue til at give en begrundelse.
+</p>
+
+<img src="/img/posts/maintestobject.png" style="max-width: 100%" /><br><br>
+
+<p>
+  I vinduet kan man vælge en hyppig årsag fra en dropdown, eller blot selv skrive en. Man opretter derefter en lækage. Man kan ikke oprette en lækage uden at give en begrundelse, og bliver også påmindet om at vælge en begrundelse hvis man ikke har gjort dette, både når man klikker uden for vinduet og når man klikker opret. Dog kan man godt annullere at oprette en lækage ved at lukke vinduet, ved at trykke på krydset i hjørnet. Når man har successfuldt oprettet en lækage bliver der vist et flueben ikon i 3 sekunder. Hvis der for eksempel er en netværksfejl, får man en fejlmeddelelse ved oprettelsen. Man kan også vælge at sige at alle lækager er i orden ved at trykke på en knap.
+</p>
+<img src="/img/posts/givereason.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/successreasonleak.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/mainsniffingpoints.png" style="max-width: 100%" /><br><br>
+
+<p>
+  Man kan også redigere et testobjekt og lækagepunkter, hvis man har brug for dette. Man kan vælge et andet billede, redigere, oprette og slette lækagepunkter, samt redigere serienr og type. Disse ændringer kan derefter ses da testobjektet i dashboardet bliver opdateret. Koden og derved komponenterne bliver delt og genanvendt mellem redigering og oprettelse, da mange af funktionaliteterne er ens.
+</p>
+<img src="/img/posts/edit.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/mainafteredit.png" style="max-width: 100%" /><br><br>
+<p>
+  Man kan også slette et testobjekt, man bliver mødt med et vindue hvor man godkender sletningen.
+</p>
+<img src="/img/posts/deletetestobject.png" style="max-width: 100%" /><br><br>
+
+<p>
+  Man kan vælge et bestemt testobjekt, ud fra et vindue/modal, hvor der er en liste med alle testobjekter. Når man trykker på et bestemt testobjekt bliver dette hentet og vist.  
+</p>
+<img src="/img/posts/selectall.png" style="max-width: 100%" /><br><br>
+<p>
+  Jeg har lavet en anden side til machine learning delen af mit projekt. Jeg har brugt React Router til at dele siden op, så dashboardet har root soom URL, altså blot “/”, og ML ruten hedder “/mlpage”. På denne side er der to dele, en til forudsigelse af lækagepunkter, og en til forudsigelse til termiske billeder. Til første del er der HTML-sliders og dropdown menu’er, hvor man kan vælge bestemte værdier. Når man ændrer på en værdi, så bliver disse sendt til API’en, hvor et neural netværk laver en forudsigelse. Denne forudsigelse, for hvilket lækagepunkt der har den højeste sandsynlighed for at få et læk, bliver returneret samt den sande label. Den sande label kan udregnes fordi det i data jeg har genereret, har jeg opstillet bestemte regeler for hvilke værdier der skal udløse hvilke labels, altså lækagepunkter. Til den anden del, til forudsigelsen af om de termiske billeder viser en lækage eller ej, kan man trykke på en knap og derefter bliver billedet sendt til API’en, hvorefter det neurale netværk laver en forudsigelse, denne forudsigelse bliver sendt tilbage og vist til brugeren. 
+</p>
+<img src="/img/posts/mlpagedone.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/spprediction.png" style="max-width: 100%" /><br><br>
+<img src="/img/posts/thermalimgprediction.png" style="max-width: 100%" /><br><br>
+<p>
+  Jeg ville nok have brugt min nyerfarne viden om custom hooks og higher order components til at hente data en smule anderledes i React-siden. Jeg skulle nok have brugt custom hooks til at starte med da jeg begyndte at lave webapplikationen i React. Dette betyder at jeg kun delvist har implementeret dette design pattern. Jeg benytter mig af custom hooks, men ved nogle af de componenter jeg implementere dette mønster i benytter jeg useStates istedet for at udelukkende bruge det i custom hooks. Dette er noget jeg vil gøre anderledes hvis jeg skulle gøre dette om. Jeg ville måske også benytte mig af higher order components Ville også have brugt en anden API til at starte med. 
+</p>
+<p>
+  Jeg skulle højest sandsynligt have brugt en alternativ API såsom JSON server i stedet for google storage API da jeg startede med at lave prototypen i React. Jeg vidste at dette var en midlertidig løsning, og valgte derfor blot google storage som API, men på daværende tidspunkt kendte jeg ikke til JSON server. En mock JSON Server API er en simuleret server, der opretter en falsk API ved hjælp af JSON-filer. Det ville nok have været nemmere og hurtigere at implementere mock API der bruger JSON Server. Derfra kunne jeg have skiftet over til Node.js server, da jeg kunne have skrevet det i samme sprog som i React, men på daværende tidspunkt kendte jeg hverken til Node.js eller JSON server. Den fungerer som en midlertidig database og API til udviklingsformål, hvilket gør det muligt at teste og udvikle webapplikationer uden behov for en reel backend. Men den Flask API som jeg endte med at lave og udvide til min SPA var let at opsætte og jeg er også ret tilfreds med denne løsning. Overodnet har det været sjovt at prøve at lave en side i React, der er mange ting jeg kunne have gjort anderledes, men jeg lærte en hel del om emnet.
+</p>
+<p>
+  Til videnssamling i ML valfaget læste jeg omkring machine learning og især neurale netværk. Jeg lænte mig i starten meget op ad bogen og YouTube tutorial serien “Neural Networks from Scratch in Python”, derudover har fulgte jeg også codecademy’s tutorial “Introduction to Machine Learning”. Senerehen har jeg set og læst mange forskellige videoer og tekster omkring dette emne. Jeg lærte om hvordan et neuralt nætværk er struktureret og hvordan det lærer med neuroner, lag, aktiveringsfunktioner og gradient descent. Jeg har hovedsagligt haft to mindre projekter i mit valgfag til ML, hvor jeg har experimenteret med at implementere neurale netværk. 
+</p>
+<p>
+  I det første projekt var det egentlig meningen at jeg ville bruge Noleks data til at træne et neuralt netværk på, men eftersom de ikke gjorde deres data tilgængelig, valgte jeg at generere mit eget datasæt. Dette gør dog at projektet ikke bliver baseret på virkeligt data, som måske kunne give andre problemstillinger og derved løsninger, som kunne være lærerigt i sig selv. Jeg fik dog trænet et neuralt netværk på dette datasæt, som jeg selv havde lavet. Faktisk lavede jeg dette projekt på to forskellige måder. Først bruge jeg koden fra bogen “Neural Networks from Scratch in Python”, dette er bygget fra bunden med numpy og pandas, og benytter ingen store og populære ML-biblioteker. Derefter valgte jeg at stifte bekendtskab med tensorflow keras, og valgte at lave projektet med dette bibliotek på google colab. Dette er også den model jeg har brugt til  forudsigelser på ML siden i Flask API’en. Begge mine modeller er gemt og læst med et python bibliotek kaldt pickle. Modellen laver multi-class classification til at lave forudsigelser på hvilket lækagepunkt er mest sandsynligt til at få en lækage.
+</p>
+<p>
+  Til det andet projekt faldt jeg over et datasæt med termiske billeder, der viser forskellige gasser. Jeg valgte at lave binær klassifikation med dette datasæt, hvor modellen blev trænet på to typer billeder, et med en lækage i form af gas, og en gruppering uden noget læk/gas. Jeg benyttede igen tensorflow keras til at bygge modellen. Jeg fik også lært lidt omkring hvordan man laver data augmentation på billeder, hvor man ændre og forvrænger billderene lidt, så man får et større og bedre datasæt, så ens model kan generalisere bedre. Dette var et sjovt mindre projekt, som også inspirerede Nolek til selv at experimentere med klassifikation af termiske billeder, og sidst jeg snakkede med dem havde de lånt et professionelt termisk kamera. 
+</p>
+<p>
+  ML meget dybt og teknisk tungt emne, og jeg har kun krasset overfladen. Men det har været meget lærerigt, og har en meget bedre forståelse af neurale netværk, og ML emnet overordnet end jeg havde for nogle måneder siden, men der er stadig rigtig meget at lære.  
+</p>

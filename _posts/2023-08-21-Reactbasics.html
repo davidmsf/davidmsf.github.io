@@ -1,0 +1,23 @@
+---
+layout: post
+title: "React basics"
+subtitle: "SPA: React baiscs"
+date: 2023-11-9 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Der er nogle fundamentielle begreber i React som jeg måske ikke har klargjort så meget, som jeg måske skulle have gjort i begryndelsen, da jeg først begyndte at experimentere og lave SPA’en. Jeg nævte måske nogle af dem i begyndelsen, men fik ikke forklaret nok omkring dette. Der er mange mindre begreber som man skal forstå for at lave en simpel hjemmeside i React. Jeg vil kort gå igennem og præsentere nogle af disse esentielle begreber.  
+</p>
+
+<p>
+  Skabeloner er skrevet i JSX, som er en syntaks, der næsten er identisk med HTML. Der er dog et par vigtige forskelle fra JSX til HTML. For eksempel bruger man i JSX “className” til at tilføje css klasser til elementer i stedet for blot “class”. Hvis man skriver det i TypeScript som jeg gør, så hedder syntaksen TSX, som arver fra JSX, og tilføjer type information til JSX elementer.  
+</p>
+<p>
+  Til at starte med i et nyt React projekt, har man kun en komponent, som hedder App, som er indgangspunktet til ens webapplikation. I hvert komponent er der en funktione der indeholder logik og skabelonen i JSX eller TSX. Skabelonen bliver returneret i funktionen. Til sidst i koden til en komponent, bliver funktionen exporteret, så den kan bruges i andre komponent filer, hvortil JSX eller TSX bliver returneret til, fra den funktion i komponenten, der er blevet importeret.   
+</p>
+
+<p>Ved click events i React kalder man ofte funktioner handle efterfulgt af det funktionen skal udføre f.eks. 'handleClick. Der findes mange forskellige events man kan tilføje til html elementer. For at binde et event til en funktion skriver man blot on efterfulgt af handlingen i elementet. Dette er ret basal viden, og men 
+  Hvis man vil overføre argumenter til funktionen man kalder, skal man skrive en anonym funktion for at forhindre, at den udføres med det samme, f.eks. () ⇒ handleClick(argument).</p>
+<p>Ofte sender man funktioner ned til child-components, istedet for at have funktionerne i selve komponenten hvor funktionaliteten sker. Dette kan foreksempel være at slette et element, hvor man laver funktionen til at slette elementet i forældre komponenten, der implementerer barne komponentet. Derfra kan man så sende funktionen ned til barne komponentet hvor funktionen bliver kaldt, når et event bliver triggered. Man har derved ofte en “state” i form a useState i forældre komponenten, hvor den bliver ændret ved funktionen i samme komponent, som så bliver sendt ned til barne komponenten som en property. </p>
+<p>Kilde: Full Modern React Tutorial - https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&ab_channel=NetNinja</p>

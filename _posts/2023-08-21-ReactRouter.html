@@ -1,0 +1,19 @@
+---
+layout: post
+title: "React router"
+subtitle: "SPA: React router"
+date: 2023-12-9 4:45:13 -0400
+background: "/img/posts/reactcode.png"
+---
+
+<p>
+  Som jeg også har skrevet lidt om tidligere, bliver der sendt en ny anmodning til serveren, som derefter returnerer en ny HTML-side til rendering, ved hver side request i en traditionel multi page application (MPA). I modsætning hertil håndterer React-applikationer routing anderledes. Ved første anmodning sender serveren en tom HTML side tilbage samt kompilerede React JavaScript-filer. Herfra kontrollerer React applikationen, og der bliver efterfølende kun sendt anmodninger for at hente data, og ikke nye HTML-sider som ved en MPA. HTML-siden er i begyndelsen næsten tom, og React injicerer derefter dynamisk indhold ud fra sine komponenter. 
+</p>
+<p>
+  Hvis man benytter React Router, bliver et link klik automatisk afbrudt, for at forhindre at der bliver sendt requests til serveren. Istedet bliver der vha. React Router injiceret den valgte side, som brugeren har valgt ved at klikket på linket, i form af et komponent. Når man skal benytte sig af React Router skal man indkapsle hele siden, som regel i app.tsx/jsx, hvilket er også hvad jeg har gjort, i en såkaldt Router komponent. Inde i dette komponent kan man så definere hver rute, ved hjælp af et Routes-komponent, hvor man så kan opsætte sine URL-stier med en path-property, fx “/” som root til hjemmesiden og en element-prop, der angiver, hvilken komponent der skal rendere, som fx i mit tilfælde er dashboard. Routes komponentet sørger for at den første rute der passer med hvad der er blevet valgt bliver renderet. For at undgå anmodninger til serveren ved navigation mellem sider, skal standard <a> tags til links erstattes med React Routers <Link> komponent, som håndterer navigationen på klient-siden.  
+</p>
+<p>
+  Route parameters i React Router gør at man kan oprette dynamiske ruter, hvor en del af URL'en kan variere. De bruges ofte til at identificere specifikke elementer, som f.eks. en blogpost's ID i en URL som fx "/blogs/:id". Komponenten kan derefter bruge denne parameter til at hente og vise specifikke data baseret på ID'et. For at håndtere disse dynamiske ruter, bruges en kolon (:) foran parameterens navn i rute definitionen i path-property (f.eks. "/blogs/:id"). Hvis man ønsker at inkludere flere parametre i URL'en i ens webapplikation, kan man tilføje flere route parameters i sin sti definition. Dette er noget jeg godt kunne have implementeret i min ML side, hvor man kan vælge forskellige værdier til at forudsige en lækage. Dette gør at man kan dele URL’en med andre, så de også får en forudsigelse ud fra samme kriterier.   
+</p>
+<p>Kilde: Full Modern React Tutorial - https://www.youtube.com/watch?v=j942wKiXFu8&list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d&ab_channel=NetNinja</p>
+
