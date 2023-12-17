@@ -118,8 +118,8 @@ background: "/img/posts/Screenshot.png"
 </p>
 
 <p>
-  Når vi udvider fra et enkelt neuron til et helt lag af neuroner, vil hvert neuron i et lag forbinde til alle neuroner i det næste lag. Under backpropagation vil hvert neuron fra det nuværende lag modtage en gradient fra det efterfølgende lag. Denne gradient er en kombination af afledte fra det efterfølgende lag og afledte af aktiveringsfunktionen for det pågældende neuron.
-  For at opdatere vægtene i netværket, bliver de afledte værdier, som hvert neuron i et lag modtager, ganget med de tilsvarende input fra det foregående lag. Denne beregning danner grundlaget for gradienten, der skal anvendes i det forrige lag.  
+  Når vi udvider fra et enkelt neuron til et helt lag af neuroner, vil hvert neuron i et lag forbinde til alle neuroner i det næste lag. Under backpropagation vil hvert neuron fra det nuværende lag modtage en gradient fra det efterfølgende lag. Denne gradient er en kombination af afledte fra det efterfølgende lag og afledte af aktiveringsfunktionen for hvert neuron.
+  For at opdatere vægtene i netværket, bliver de afledte værdier, som hvert neuron i et lag modtager, ganget med inputs fra det tidligere lag. Denne beregning er grundlaget for gradienten, der anvendes i det forrige lag.  
 </p>
 
 
