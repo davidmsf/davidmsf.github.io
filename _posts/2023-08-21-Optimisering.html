@@ -101,7 +101,7 @@ background: "/img/posts/Screenshot.png"
   rate))). Et eksempel kunne være at man starter meden learning rate på 0.1, 100
   steps/iterationer og en decay rate på 0.01, ved det første trin er bliver
   learning rate udregnet til: 1/(1+(1*0.01)) = 0,99 * learning rate = 0,099. Ved
-  nr 50 trin bliver det til 1/(1+(50*0.01)) = 0,99 * learning rate = 0,067. Så
+  nr 50 trin bliver det til 1/(1+(50*0.01)) = 0,66 * learning rate = 0,067. Så
   learning rate bliver justeret på med denne måde, så den hele tiden tager
   mindre skridt gradvist over tid, først meget, men senere mindre skridt. Så jo
   flere steps der bliver taget i træningen, jo mindre bliver learning rate. Det
