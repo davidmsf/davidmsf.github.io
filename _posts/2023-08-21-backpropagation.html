@@ -97,7 +97,7 @@ background: "/img/posts/Screenshot.png"
   I dette eksempel i youtube videoen modtager en neuron en indledende gradient på 1 fra det næste
   lag til demonstrationsformål. Den røde farve bruges til at repræsentere
   differentialkvotienter. Inputværdien til ReLU-funktionen er 6, så dens afledte
-  er 1. Ved hjælp af kædereglen ganges denne afledte funktion med den afledte
+  er 1, dette er den altid når værdien er over 0, fordi ved ReLU-funktionen er værdien blot den samme når den er over 0, den afledte af x med hensyn til x er 1. Det betyder, at hældningen af funktionen i denne region er konstant og lig med 1. Ved hjælp af kædereglen ganges denne afledte funktion med den afledte
   modtaget fra det næste lag. Funktionen før aktiveringsfunktionen i det neurale
   netværk er summerings-funktionen af vægtede input og bias. Den afledte
   summerings-funktionen er altid 1, uanset input, derfor kan man altid undvære
