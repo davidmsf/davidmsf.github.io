@@ -17,7 +17,11 @@ background: "/img/posts/Screenshot.png"
   denne gradient, som hjælper med at finde uf af hvordan en lille forandring i
   vægten har indflydelse på det overordnede tab (loss).
 </p>
-<img src="/img/posts/chainrule.png" style="max-width: 100%" />
+
+<figure>
+  <img src="/img/posts/chainrule.png" style="max-width: 100%" />
+  <figcaption style="font-style: italic; font-size: small;">Kæde reglen</figcaption>
+</figure>
 <p>
   Man starter ved “output” laget, det sidste lag, og bevæger sig tilbage til
   starten, input laget, lag for lag. For hvert lag udregner man med kæde reglen
@@ -46,8 +50,13 @@ background: "/img/posts/Screenshot.png"
   differentialkvotienten og de partielle differentialkvotienter med respekt til
   hver af vores vægte, bias og inputs.
 </p>
-<img src="/img/posts/sammensatfunktionneuron.png" style="max-width: 100%" />
-<img src="/img/posts/sammensatfunktionneuron1.png" style="max-width: 100%" />
+
+
+<figure>
+  <img src="/img/posts/sammensatfunktionneuron.png" style="max-width: 100%" />
+  <img src="/img/posts/sammensatfunktionneuron1.png" style="max-width: 100%" />
+  <figcaption style="font-style: italic; font-size: small;">Udregninger i et neuron, med ReLU som aktiveringsfunktion</figcaption>
+</figure>
 <p>
   Kæde reglen siger at man finder differentialkvotienten af en sammensat
   funktion ved at differentiere den ydre funktion ganget med den indre funktion
@@ -72,10 +81,15 @@ background: "/img/posts/Screenshot.png"
   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
   allowfullscreen
 ></iframe>
-<img
+
+<figure>
+  <img
   src="/img/posts/chainruleexampleneuronderivative.png"
   style="max-width: 100%"
 />
+  <figcaption style="font-style: italic; font-size: small;">Kæde-reglen til udregning af gradient af vægt, aktiveringsfunktionen bliver afledt mht vægt x0</figcaption>
+</figure>
+
 <p>
   I dette eksempel modtager en neuron en indledende gradient på 1 fra det næste
   lag til demonstrationsformål. Farven rød bruges til at repræsentere
@@ -123,6 +137,6 @@ background: "/img/posts/Screenshot.png"
 </p>
 
 <p>
-  Kilde: Neural Networks from Scratch in Python Bog/PDF- Chapter 9 -
+  Kilde: Neural Networks from Scratch in Python Bog/PDF - Chapter 9 -
   Backpropagation
 </p>
