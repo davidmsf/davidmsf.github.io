@@ -8,7 +8,7 @@ background: "/img/posts/reactcode.png"
 
 <p>
   Jeg er kommet lidt videre med min dynamiske hjemmeside i React. Jeg er stort
-  set færdig med delen, der handler om at oprette et “testobjekt”, altså et
+  set færdig med delen der handler om at oprette et “testobjekt”, altså et
   billede med nogle lækagepunkter og information omkring dette objekt. Dette
   bliver uploadet som en CSV i øjeblikket, hvilket jeg nu tænker, at jeg skulle
   have brugt JSON i stedet for CSV til at gemme dataen. Dataen skal sendes til
@@ -17,7 +17,7 @@ background: "/img/posts/reactcode.png"
 <p>
   Jeg er begyndt at udvikle delen af hjemmesiden, der står for at godkende og
   registrere lækager. Brugeren skal kunne “toggle” mellem om lækagepunktet er ok
-  eller ikke ok. Jeg er ikke kommet til, at denne information skal uploades
+  eller ikke ok. Jeg er ikke kommet til det punkt hvor denne information skal uploades
   endnu.
 </p>
 <p>
@@ -25,35 +25,35 @@ background: "/img/posts/reactcode.png"
   eller om der skal være en særskilt knap, som brugeren kan klikke på for at
   sende dataen. Jeg har stadig en del arbejde at lave på siden endnu, der skal
   fx være mulighed for at vælge et bestemt testobjekt ud af alle objekter. Jeg
-  tænker, at testobjekterne, der kan vælges ud fra, skal vises i en liste i et
-  nyt vindue, eller “modal”.
+  tænker at testobjekterne der kan vælges ud fra, skal vises i en liste i et
+  nyt vindue eller “modal”.
 </p>
 <p>
-  Der skal også være mulighed for at redigere. Jeg tænker, at der skal være en
+  Der skal også være mulighed for at redigere testobjekterne. Jeg tænker, at der skal være en
   knap til at redigere ved det valgte testobjekt, og måske også en knap/ikon til
-  redigering for hvert objekt i vinduet, hvor man kan vælge dem. Det er et krav,
-  at når man trykker på, at et lækagepunkt ikke er ok (dvs. der er opstået en
+  redigering for hvert objekt i modal vinduet hvor man kan vælge testobjekterne. Det er et krav,
+  at når man trykker at et lækagepunkt ikke er ok (dvs. der er opstået en
   lækage), så skal brugeren give en begrundelse. Dette mangler jeg stadig at
-  implementere. Jeg er heller ikke helt sikker på, hvordan det skal
-  implementeres, så brugeren først skal give en begrundelse og dernæst sige, at
-  den ikke er okay. Der skal måske ikke være mulighed for at toggle "ikke ok",
-  dvs. at knappen er "låst", og give en besked til brugeren om, at de skal give
+  implementere. Jeg er heller ikke helt sikker på hvordan det skal
+  implementeres, måske ved at brugeren først skal give en begrundelse og dernæst sige at
+  lækagepunktet ikke er okay. Der skal måske ikke være mulighed for at toggle "ikke ok"
+  dvs. at knappen er "låst", og give en besked til brugeren om at de skal give
   en begrundelse først.
 </p>
 <p>
   Overordnet forestiller jeg mig strukturen på React SPA'en at have en
-  hovedside, hvor man kan trykke ok/ikke ok, hvorfra man kan åbne forskellige
-  vinduer (modals): oprette/redigere, vælge testobjekt, og skrive besked om
-  lækagepunktet. Jeg tænkte på mht. flowet i React, at der skal være et
+  hovedside, hvor man kan vælge at et lækagepunkt er ok/ikke ok, hvorfra man kan åbne forskellige
+  vinduer (modals), for eksempel oprette/redigere testobjekter, vælge et testobjekt, og skrive en begrundelse om
+  lækagepunktet. Jeg tænkte på mht. flowet af data i React, at der skal være et
   hoved-state i et ydre komponent, hvorfra for eksempel opret-vinduet og
-  hovedsiden deler information, fx når man har oprettet et nyt testobjekt, og
+  hovedsiden deler information fx når man har oprettet et nyt testobjekt, og
   det skal vises i hovedvinduet. Men den idé er jeg gået lidt væk fra nu. Jeg
-  tænker nu, at det ville være bedre praksis, hvis der bliver delt et id mellem
+  tænker nu, at det ville være bedre praksis hvis der bliver delt et id mellem
   komponenterne, så hvert komponent henter data ud fra dette id. Derved kommer
-  der mere “separations of concerns”/Separation af Ansvar, siden hvert komponent
+  der mere “separations of concerns”/Separation af Ansvar siden hvert komponent
   håndterer sin egen datalogik. Dette gør komponenterne mere genanvendelige og
-  lettere at vedligeholde. Det gør også applikationen mere skalerbar, hvis
-  applikationen vokser i kompleksitet, kan denne tilgang gøre det lettere at
+  lettere at vedligeholde. Det gør også applikationen mere skalerbar. Hvis
+  applikationen vokser i kompleksitet kan denne tilgang gøre det lettere at
   tilføje nye funktioner eller ændre eksisterende funktionalitet. Dog kommer der
   til at være flere kald til api’en, hvilket kan øge belastningen på serveren og
   potentielt forsinke brugerens oplevelse. Men der kommer nok ikke til at være
