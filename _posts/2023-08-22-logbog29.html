@@ -8,19 +8,19 @@ background: "/img/posts/logbog.png"
 
 <p>
   I løbet af de seneste par dage har jeg arbejdet på at opsætte endpoints i
-  vores API ved hjælp af Flask i Python. Samtidig har jeg konfigureret
+  Flask API i Python. Samtidig har jeg konfigureret
   React-applikationen til at sende anmodninger til denne API. Jeg er endnu ikke
   helt færdig, men forventer at afslutte arbejdet snart, enten senere denne uge
   eller i starten af næste uge. I forbindelse med at jeg lærer om custom hooks,
-  har jeg udviklet et eget hook til datahentning. Dette bruges, når enten et
+  har jeg udviklet et custom hook til datahentning. Dette bruges, når enten et
   enkelt eller alle testobjekter skal hentes. Jeg overvejer også at udvikle
   endnu et custom hook til at sende data til API'en.
 </p>
 <p>
   De data, der sendes til API'en, gemmes på en lokal MSSQL-server ved hjælp af
   simple SQL-forespørgsler. Det har været frustrerende at støde på en fejl i
-  serveranmodningerne, hvilket har nødvendiggjort en udvidelse af API'en og
-  oprettelse af en database. Jeg har forsøgt at løse problemet med anmodningerne
+  serveranmodningerne på vores fælles server, hvilket har nødvendiggjort en udvidelse af denne Flask API og
+  oprettelse af en database lokalt. Jeg har forsøgt at løse problemet med anmodningerne
   til vores eksterne server, men fejlen opstår fortsat. Derfor arbejder jeg nu
   på at udvide API'en og oprette en database, heldigvis tager det ikke så lang
   tid at lave.
