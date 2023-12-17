@@ -118,25 +118,10 @@ background: "/img/posts/Screenshot.png"
 </p>
 
 <p>
-  Når vi udvider fra et enkelt neuron til et helt lag af neuroner, vil hvert
-  neuron i et lag forbinde til alle neuroner i det næste lag. Under
-  backpropagation vil hvert neuron fra det nuværende lag modtage en gradient fra
-  det efterfølgende lag. Vægtene fra hver neuron i det tidligere lag bliver
-  ganget med gradienten. dette danner grundlag for den næste gradient til det
-  næste lag. Og så udføres udregningen rekursivt.
+  Når vi udvider fra et enkelt neuron til et helt lag af neuroner, vil hvert neuron i et lag forbinde til alle neuroner i det næste lag. Under backpropagation vil hvert neuron fra det nuværende lag modtage en gradient fra det efterfølgende lag. Denne gradient er en kombination af afledte fra det efterfølgende lag og afledte af aktiveringsfunktionen for det pågældende neuron.
+  For at opdatere vægtene i netværket, bliver de afledte værdier, som hvert neuron i et lag modtager, ganget med de tilsvarende input fra det foregående lag. Denne beregning danner grundlaget for gradienten, der skal anvendes i det forrige lag.  
 </p>
-<p>
-  Her beregner drelu2 hvordan outputtet fra det laget påvirker tabet. Dinputs2,
-  dweights2 og dbiases beregner, hvordan input, vægte og biases fra det andet
-  tætte lag påvirker tabet.
-</p>
-<img src="/img/posts/backpasscode.png" style="max-width: 100%" />
-<p>
-  Dernæst udføres backpropagation gennem den første aktiveringsfunktion. På
-  samme måde beregner drelu1 hvordan outputtet fra det første lag påvirker
-  tabet. Dinputs1, dweights1 og dbiases1 beregner, hvordan input, vægte og
-  biases fra det første tætte lag henholdsvis påvirker tabet.
-</p>
+
 
 <p>
   Kilde: Neural Networks from Scratch in Python Bog/PDF - Chapter 9 -
