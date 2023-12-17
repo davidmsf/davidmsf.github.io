@@ -18,10 +18,6 @@ background: "/img/posts/Screenshot.png"
   vægten har indflydelse på det overordnede tab (loss).
 </p>
 
-<figure>
-  <img src="/img/posts/chainrule.png" style="max-width: 100%" />
-  <figcaption style="font-style: italic; font-size: small;">Kæde reglen</figcaption>
-</figure>
 <p>
   Man starter ved “output” laget, det sidste lag, og bevæger sig tilbage til
   starten, input laget, lag for lag. For hvert lag udregner man med kæde reglen
@@ -57,10 +53,18 @@ background: "/img/posts/Screenshot.png"
   <img src="/img/posts/sammensatfunktionneuron1.png" style="max-width: 100%" />
   <figcaption style="font-style: italic; font-size: small;">Udregninger i et neuron, med ReLU som aktiveringsfunktion</figcaption>
 </figure>
+
 <p>
   Kæde reglen siger at man finder differentialkvotienten af en sammensat
   funktion ved at differentiere den ydre funktion ganget med den indre funktion
-  differentieret. For at udregne hvilken indflydelse en vægt har på outputtet,
+  differentieret.
+</p>
+<figure>
+  <img src="/img/posts/chainrule.png" style="max-width: 100%" />
+  <figcaption style="font-style: italic; font-size: small;">Kæde reglen</figcaption>
+</figure>
+<p>
+  For at udregne hvilken indflydelse en vægt har på outputtet,
   skal man ifølge kæde reglen udregne differentialkvotienten af aktivations
   funktionen med respekt til dens indre funktion, hvilket er summerings
   funktionen. Dette ganger man med summerings funktionen differentieret, med
